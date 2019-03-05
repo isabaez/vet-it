@@ -29,8 +29,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+console.log(process.env.mlab)
+
 // var connect = require(process.env.theGoose);
-mongoose.connect(process.env.theGoose);
+mongoose.connect(process.env.mlab);
 
 app.use(session({
     secret: "secret",
