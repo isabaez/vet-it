@@ -1,0 +1,764 @@
+<!-- menu -->
+  <div class="mainBtn toggle" style="display: block;" id="navToggle">
+  </div>
+  <div id="wrapper" class="toggled">
+
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <br>
+        <br>
+        <br>
+        <br>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/editProfile">Profile</a></li>
+          <li><a href="/logout">Logout</a></li>
+          <hr>
+          <li><a href="/FAQ">FAQ</a></li>
+          <li><a href="/Feedback">Feedback</a></li>
+          <li><a href="/TermsOfUse">Terms of Use</a></li>
+          <li><a href="/CookiePolicy">Cookie Policy</a></li>
+      </ul>
+  </div>
+
+<!-- CHANGE PROFILE PICTURE MODAL -->
+<div class="modal fade" id="profPicModal" role="dialog" aria-labelledby="profPicModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="profPicModalTitle">Change Your Logo</h4>
+			</div>
+			<div class="modal-body">
+        <form ref='uploadForm'
+          id='uploadForm'
+          action='http://localhost:3000/addProfilePicture/{{company._id}}/{{company.name}}'
+          method='post'
+          encType="multipart/form-data">
+          <input type="file" name="file"/>
+          <input type='submit' value='Upload!'/>
+        </form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ADD QUESTION MODAL -->
+<div class="modal fade" id="questionModal" role="dialog" aria-labelledby="questionModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="questionModalTitle">Ask a Question</h4>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+		  				<input type="text" class="form-control" id="questionSubject" autofocus required>
+		  				<label for="questionSubject" class="form-control-label">Question</label>
+					</div>
+					<div class="form-group">
+		  				<textarea class="form-control" id="questionBody" autofocus required></textarea>
+		  				<label for="questionBody" class="form-control-label">Notes</label>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary" id="submit">Submit</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ADD REPLY MODAL -->
+<div class="modal fade" id="replyModal" role="dialog" aria-labelledby="replyModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="replyModalTitle"></h4>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<textarea class="form-control" id="replyBody" placeholder="Your Reply" required></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary" id="submitReply">Submit</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- EDIT BLOG MODAL -->
+<div class="modal fade" id="blogModal" role="dialog" aria-labelledby="blogModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="blogModalTitle">Edit your blog:</h4>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<textarea class="form-control" id="blogBody" required></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary" id="submitBlog">Submit</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{#if employerOwner}}
+<!-- ADD JOB POSTING -->
+<div class="modal fade" id="addJobPostingModal" role="dialog" aria-labelledby="addJobPostingModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="addJobPostingModalTitle">Add a Job Posting</h4>
+			</div>
+			<div class="modal-body">
+				<form id="postJobForm">
+				  <div class="form-group">
+				    <label for="positionType">Type of Position</label>
+				    <div>
+				      <select name="positionType" class="target input_Position_wrap" id="positionType">
+				        <option value=''>----Please Select the Type of Position----</option>
+				        {{#each typesOfJobs}}
+				          <option value='{{this}}'>{{this}}</option>
+				        {{/each}}
+				        <option class="other" value="Other">New Position Type - Please Specify Below</option>
+				      </select>
+				    </div>
+				    <div id="newPosition" class="newPosition">
+				      <input type="text" class="form-control" id="newPositionVal" name="newPosition" placeholder="New Position">
+				      <button class="add_Position_button btn btn-default">+Add Position Type</button>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="positionTitle">Position Title</label>
+				    <div>
+				      <input type="text" class="form-control" id="positionTitle" name="positionTitle" required>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="unit">Business Unit</label>
+				    <div>
+				      <input type="text" class="form-control" id="unit" name="unit" required>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="location">Location</label>
+				    <div>
+				      <input type="text" class="form-control" id="location" name="location" required>
+				    </div>
+				  </div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary" id="submit" value='Submit'>Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{{/if}}
+
+{{#if educatorOwner}}
+<!-- ADD PROGRAM -->
+<div class="modal fade" id="addProgramModal" role="dialog" aria-labelledby="addProgramModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="addProgramModalTitle">Add a Program</h4>
+			</div>
+			<div class="modal-body">
+				<form id="addProgramForm">
+					<div class="form-group">
+						<label for="programType">Type of Program</label>
+						<div>
+							<select name="programType" class="target input_Program_wrap" id="programType">
+								<option value=''>----Please Select the Type of Program----</option>
+								{{#each typesOfPrograms}}
+								<option value='{{this}}'>{{this}}</option>
+								{{/each}}
+								<option class="other" value="Other">New Program Type - Please Specify Below</option>
+							</select>
+						</div>
+						<div id="newProgram" class="newProgram">
+							<input type="text" class="form-control" id="newProgramVal" name="newProgram" placeholder="New Program">
+							<button class="add_Program_button">+Add Program Type</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="programTitle">Program Title</label>
+						<div>
+							<input type="text" class="form-control" id="programTitle" name="programTitle" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="deadlineMonth">Next Deadline</label>
+							<select class="form-control" id="deadlineMonth" name="deadlineMonth" required>
+								<option value=''>----Please Select a Month----</option>
+							</select>
+							<select class="form-control" id="deadlineDay" name="deadlineDay" required>
+								<option value=''>----Please Select a Day----</option>
+							</select>
+							<select class="form-control" id="deadlineYear" name="deadlineYear" required>
+								<option value=''>----Please Select a Year----</option>
+							</select>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary" id="submit" value='Submit'>Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{{/if}}
+
+<!-- company page -->
+<div class="container-fluid">
+  <div class="row-fluid">
+    <!-- mobile version -->
+    <div class="hidden-sm hidden-md hidden-lg col-xs-12" style="padding:0">
+      <div class="dashboard">
+        <br>
+        <br>
+        <h2>{{company.name}}</h2>
+        <label>COMPANY PROFILE</label>
+				{{#if owner}}
+				 <a type="button" class="label label-info" onClick="edit()" value="{{company._id}}">Edit Blog</a>
+				{{/if}}
+				<div>
+					{{#unless claimed}}
+					<form method='POST'>
+						<button type="submit" class="btn btn-primary" id="claim" value='Submit'>Claim</button>
+					</form>
+					{{/unless}}
+					{{#if employerOwner}}
+						<button class="btn btn-default" id="addJobOpeningMobile">+Add Job Opening</button>
+					{{else if educatorOwner}}
+						<button class="btn btn-default" id="addProgramMobile">+Add Program</button>
+					{{else if veteran}}
+						{{#if isFollowing}}
+							<a class="btn btn-default" href="/unfollow/{{company._id}}">Unfollow</a>
+						{{else}}
+							<a class="btn btn-default" href="/follow/{{company._id}}">Follow</a>
+						{{/if}}
+						<div class="dropdown">
+							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">+Add Review
+							<span class="caret"></span></button>
+							<ul class="dropdown-menu">
+							{{#if empCompany}}
+								<li><a href="/companyReview/{{company._id}}">Company Review</a></li>
+							{{else if eduCompany}}
+								<li><a href="/educationReview/{{company._id}}">Education Review</a></li>
+							{{/if}}
+								<li><a href="/interviewReview/{{company._id}}">Interview Review</a></li>
+							</ul>
+						</div>
+					{{/if}}
+				</div>
+       </div>
+     </div>
+
+      <!--Sidebar content-->
+      <div class="hidden-xs col-sm-4 col-md-3" style="padding:0">
+        <div class="dashboard">
+          <br>
+          <br>
+          <div class="media-left">
+            <a href="{{company.profilePic}}" target="_newtab">
+              <img class="media-object" src="{{company.profilePic}}" alt="logo">
+            </a>
+          </div>
+          <h2>{{company.name}}</h2>
+					{{#if empCompany}}
+          <label>EMPLOYER PROFILE</label>
+					{{else if eduCompany}}
+          <label>EDUCATOR PROFILE</label>
+					{{/if}}
+					<h4>About:</h4>
+					<div>
+						<label id="{{company._id}}">{{company.blog}}</label> <br>
+						<label>Located in {{company.location}}</label>
+					</div>
+					{{#if owner}}
+		       <a type="button" class="label label-info" onClick="edit()" value="{{company._id}}">Edit Blog</a>
+		       <a type="button" class="label label-info" id="profPic" value="{{company._id}}">Change Logo</a>
+					{{/if}}
+          <hr>
+          <div>
+            {{#each companies}}
+            	<div>
+            	<a class="btn btn-link small" href="/companyProfile/{{_id}}">{{name}}</a>
+            </div>
+            {{/each}}
+          </div>
+					<div>
+						{{#unless claimed}}
+						<form method='POST'>
+						  <button type="submit" class="btn btn-primary" id="claim" value='Submit'>Claim</button>
+						</form>
+						{{/unless}}
+						{{#if employerOwner}}
+							<button class="btn btn-default" id="addJobOpening">+Add Job Opening</button>
+						{{else if educatorOwner}}
+							<button class="btn btn-default" id="addProgram">+Add Program</button>
+						{{else if veteran}}
+							{{#if isFollowing}}
+								<a class="btn btn-default" href="/unfollow/{{company._id}}">Unfollow</a>
+							{{else}}
+								<a class="btn btn-default" href="/follow/{{company._id}}">Follow</a>
+							{{/if}}
+							<div class="dropdown">
+							  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">+Add Review
+							  <span class="caret"></span></button>
+							  <ul class="dropdown-menu">
+								{{#if empCompany}}
+									<li><a href="/companyReview/{{company._id}}">Company Review</a></li>
+								{{else if eduCompany}}
+									<li><a href="/educationReview/{{company._id}}">Education Review</a></li>
+								{{/if}}
+							    <li><a href="/interviewReview/{{company._id}}">Interview Review</a></li>
+							  </ul>
+							</div>
+						{{/if}}
+					</div>
+      </div>
+    </div>
+
+		<!-- body content -->
+    <div class="col-xs-12 col-sm-8 col-md-9 companypro" style="padding:0">
+
+<!-- for company -->
+        {{#if empCompany}}
+      <div class="container">
+        <ul class="nav nav-tabs company" role="tablist" id="example-one">
+          <li role="presentation" class="active">
+            <a href="#first" aria-controls="first" role="tab" data-toggle="tab">Job Postings</a>
+          </li>
+          <li role="presentation">
+            <a href="#second" aria-controls="second" role="tab" data-toggle="tab">Company Reviews</a>
+          </li>
+          <li role="presentation">
+            <a href="#third" aria-controls="third" role="tab" data-toggle="tab">Interview Reviews</a>
+          </li>
+          <li role="presentation">
+            <a href="#fourth" aria-controls="fourth" role="tab" data-toggle="tab">Forum</a>
+          </li>
+        </ul>
+        <div class="tab-content" style="margin-top: 43px">
+          <div role="tabpanel" class="tab-pane active" id="first">
+            {{#each jobOpenings}}
+              <div class="well">
+              <div class="media-body">
+              <h4>Job Title: {{type}} {{positionTitle}}</h4>
+                <div class="rating">
+                <div class="review">
+                  <p>Unit: {{businessUnit}}</p>
+                  <p>Location: {{location}}</p>
+                </div>
+              </div>
+              </div>
+              {{#if ../employerOwner}}
+	            	<a href="#" class="remove_jobOpening" value={{_id}}>Remove</a>
+	            {{/if}}
+            </div>
+            {{/each}}
+          </div>
+          <div role="tabpanel" class="tab-pane" id="second">
+            {{#each CompanyReviews}}
+              <div class="well">
+              <div class="media-body">
+              <p>Position: {{type}} {{positionTitle}}</p>
+                <div class="rating">
+                  <div class="stars">
+                    <span class="stars2" style="margin-left: 15px">{{OE}} </span>
+                </div>
+                <div class="review container">
+                <div class="row-fluid">
+                  <div class="rev col-xs-8 col-sm-6" style="padding-left:0">
+                    <span><i class="fa fa-plus-circle" aria-hidden="true" style="color: #5acac7"></i></span> Positive Feedback: <p>{{posFeed}}</p>
+                  </div>
+                  <div class="rev col-xs-8 col-sm-6" style="padding-left:0">
+                    <span><i class="fa fa-minus-circle" aria-hidden="true" style="color: #e37674"></i></span> Negative Feedback: <p>{{negFeed}}</p>
+                  </div>
+                </div>
+                </div>
+                <small style="color:grey">{{date}}</small>
+              </div>
+              <p><label class="clicker" data-toggle="tooltip" data-placement="right" title="Click to See Full Review"><i class="fa fa-ellipsis-h"></i></label></p>
+              <div class="collapse">
+                <div>
+                  <p class="lead">Timeline</p>
+                  <p>This is my {{afterDuty}} job after duty.
+                  <br>
+                  How Long: {{howLong}}
+                  <hr>
+                  <p class="lead">Salary Reviews</p>
+                  <p>Salary: ${{salary}}
+                  <br>
+                  Bonuses: ${{bonuses}}
+                  <br>
+                  Tips: ${{tips}}
+                  <br>
+                  Sales Commission: ${{salesComm}}
+                  <hr>
+                  <p class="lead">Recommendations</p>
+                  <p>Why did I leave?: {{whyLeft}}
+                  <br>
+                  I {{militaryBack}} recommend this to someone with your military background.
+                  <br>
+                  I {{eduBack}} recommend this to someone with your education background.
+                  <hr>
+                  <p class="lead">Star Ratings</p>
+                  <div class="stars">Company Mission
+                    <span class="stars2">{{CM}} </span>
+                  </div>
+                  <br>
+                  <div class="stars">Company Culture
+                    <span class="stars2">{{CC}} </span>
+                  </div>
+                  <br>
+                  <div class="stars">Onboarding Program
+                    <span class="stars2">{{OP}} </span>
+                  </div>
+                  <br>
+                  <div class="stars">Professional Development Program
+                    <span class="stars2">{{PDP}} </span>
+                  </div>
+                  <br>
+                  <div class="stars">CEO Understand Veterans' Value
+                    <span class="stars2">{{CEO}} </span>
+                  </div>
+                  <br>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+            {{/each}}
+          </div>
+          <div role="tabpanel" class="tab-pane" id="third">
+            {{#each InterviewReviews}}
+    					<div class="well">
+    						<div class="media">
+    							<div class="media-left">
+    								<a href="#">
+    									<img class="media-object" src="/images/logo-14.png" alt="logo">
+    								</a>
+    							</div>
+    							<div class="media-body">
+    								<p>Interviewed For: {{positionTitle}}</p>
+    									<div class="rating">
+    										<div class="stars">
+    											<span class="stars2" style="margin-left: 15px">{{OE}} </span>
+    									</div>
+                      <div class="review container">
+                        <div class="row-fluid">
+                        <div class="rev col-xs-8 col-sm-6" style="padding-left:0">
+                          <span><i class="fa fa-plus-circle" aria-hidden="true" style="color: #5acac7"></i></span> Positive Feedback: <p>{{posFeed}}</p>
+                        </div>
+                        <div class="rev col-xs-8 col-sm-6" style="padding-left:0">
+                          <span><i class="fa fa-minus-circle" aria-hidden="true" style="color: #e37674"></i></span> Negative Feedback: <p>{{negFeed}}</p>
+                        </div>
+                      </div>
+                      </div>
+                      <small style="color:grey">{{date}}</small>
+                    </div>
+                    <p><label class="clicker" data-toggle="tooltip" data-placement="right" title="Click to See Full Review"><i class="fa fa-ellipsis-h"></i></label></p>
+                    <div class="collapse">
+                      <div>
+                        <p class="lead">Type of Program</p>
+                        <p>
+                        Year the Interview Took Place: {{year}} <br>
+                        How Did I Secure the Interview: {{secureJob}} <br>
+                        Process Duration: {{proDura}} <br>
+                        Process Description: {{proDesc}}
+                        <hr>
+                        <p class="lead">Questions</p>
+                        <p>
+                        Question 1: {{question1}} <br>
+                        Answer 1: {{answer1}} <br>
+                        <hr>
+                        <p class="lead">Feedback</p>
+                        <p>
+                        I was offered the job: {{gotIt}}
+                        <hr>
+                        <p class="lead">Star Ratings</p>
+                        <div class="stars">Interview Difficulty
+                          <span class="stars2">{{intDiff}} </span>
+                        </div>
+                      </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    				{{/each}}
+          </div>
+          <div role="tabpanel" class="tab-pane" id="fourth">
+            <div class="companyforum">
+              <h4 style="margin-top: 60px">Forum:{{#if veteran}}<a type="button" class="label label-info" id="question">Ask a Question</a>{{/if}}</h4>
+              <div id="forum">
+              {{#each Questions}}
+                <div class="well">
+                  <h3>{{subject}}</h3>
+                  <label id="{{_id}}">{{body}}</label><br>
+                  <span id="score{{_id}}">{{score}}</span> people found this question helpful
+                  <br>
+                  <br>
+                  <a class="btn btn-default" onClick="onReply()" value="{{_id}}">Reply</a>
+                  <a role="button" class="btn btn-default" onClick="upVote()" value="{{_id}}">Upvote</a>
+                  <br>
+                  <br>
+                  Replies:
+                  <div id="replies{{_id}}">
+                  {{#each answers}}
+                    <div style="margin-left: 20px">
+                      <h4>{{body}}</h4>
+                    </div>
+                  {{/each}}
+                  </div>
+                </div>
+              {{/each}}
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+<!-- for education -->
+        {{else if eduCompany}}
+    <div class="container companyc">
+      <ul class="nav nav-tabs company" role="tablist" id="example-one">
+        <li role="presentation" class="active">
+          <a href="#first" aria-controls="first" role="tab" data-toggle="tab">Programs</a>
+        </li>
+        <li role="presentation">
+          <a href="#second" aria-controls="second" role="tab" data-toggle="tab">Program Reviews</a>
+        </li>
+        <li role="presentation">
+          <a href="#third" aria-controls="third" role="tab" data-toggle="tab">Interview Reviews</a>
+        </li>
+        <li role="presentation">
+          <a href="#fourth" aria-controls="fourth" role="tab" data-toggle="tab">Forum</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="first">
+          {{#each currPrograms}}
+            <div class="well">
+	            <div class="media-body">
+	            <h4>Program: {{programTitle}}</h4>
+	              <div class="rating">
+	              <div class="review">
+	                <p>Next Deadline: {{nextDeadline}}</p>
+	              </div>
+	            </div>
+	            </div>
+	            {{#if ../educatorOwner}}
+	            	<a href="#" class="remove_program" value={{_id}}>Remove</a>
+	            {{/if}}
+          	</div>
+          {{/each}}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="second">
+          {{#each EducationReviews}}
+          <div class="well">
+          <div class="media-body">
+          <p>Program: {{programTitle}}</p>
+            <div class="rating">
+              <div class="stars">
+                <span class="stars2" style="margin-left: 15px">{{OPE}} </span>
+            </div>
+            <div class="review container">
+              <div class="row-fluid">
+              <div class="rev col-xs-8 col-sm-6" style="padding-left:0">
+                <span><i class="fa fa-plus-circle" aria-hidden="true" style="color: #5acac7"></i></span> Positive Feedback: <p>{{posFeed}}</p>
+              </div>
+              <div class="rev col-xs-8 col-sm-6" style="padding-left:0">
+                <span><i class="fa fa-minus-circle" aria-hidden="true" style="color: #e37674"></i></span> Negative Feedback: <p>{{negFeed}}</p>
+              </div>
+            </div>
+            </div>
+            <small style="color:grey">{{date}}</small>
+            </div>
+            <br>
+            <p><label class="clicker" data-toggle="tooltip" data-placement="right" title="Click to See Full Review">
+            <div> <u>Read More</u> </div>
+            </label></p>
+            <div class="collapse">
+            <div>
+              <p class="lead">Timeline</p>
+              <p>
+              Type of Training: {{trainType}} <br>
+              Funding Benefits Used: {{funding}} <br>
+              How much did I qualify from GI Bill: {{GIBill}}
+              <hr>
+              <p class="lead">Program Evaluation</p>
+              <p>
+              Paid out of pocket: ${{pocket}} <br>
+              Housing Allowance: ${{allowance}} <br>
+              Completed the program?: {{complete}} <br>
+              Credential Result: {{result}}
+              <hr>
+              <p class="lead">Recommendations</p>
+              <p>
+              I {{militaryBack}} recommend this to someone with your military background
+              <br>
+              I {{eduBack}} recommend this to someone with your education background
+              <hr>
+              <p class="lead">Star Ratings</p>
+              <div class="stars">Staff Quality
+                <span class="stars2">{{SQ}} </span>
+              </div>
+              <br>
+              <div class="stars">Faculty Quality
+                <span class="stars2">{{FQ}} </span>
+              </div>
+              <br>
+              <div class="stars">Resource Quality
+                <span class="stars2">{{RQ}} </span>
+              </div>
+              <br>
+              <div class="stars">Campus Quality
+                <span class="stars2">{{CQ}} </span>
+              </div>
+              <br>
+              <div class="stars">Campus Social Life
+                <span class="stars2">{{CSL}} </span>
+              </div>
+              <br>
+              <div class="stars">Staff understanding DoD TA/GI Bill Benefits
+                <span class="stars2">{{understand}} </span>
+              </div>
+            </p>
+            </div>
+            </div>
+            </div>
+            </div>
+          {{/each}}
+        </div>
+        <!-- THIS IS NOT SHOWING UP -->
+        <div role="tabpanel" class="tab-pane" id="third">
+          {{#each InterviewReviews}}
+            <div class="well">
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object" src="/images/logo-14.png" alt="logo">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <p>Interviewed For: {{positionTitle}}</p>
+                    <div class="rating">
+                      <div class="stars">
+                        <span class="stars2" style="margin-left: 15px">{{OE}} </span>
+                    </div>
+                    <div class="review container">
+                      <div class="row-fluid">
+                      <div class="rev col-xs-8 col-sm-6" style="padding-left:0">
+                        <span><i class="fa fa-plus-circle" aria-hidden="true" style="color: #5acac7"></i></span> Positive Feedback: <p>{{posFeed}}</p>
+                      </div>
+                      <div class="rev col-xs-8 col-sm-6" style="padding-left:0">
+                        <span><i class="fa fa-minus-circle" aria-hidden="true" style="color: #e37674"></i></span> Negative Feedback: <p>{{negFeed}}</p>
+                      </div>
+                    </div>
+                    </div>
+                    <small style="color:grey">{{date}}</small>
+                  </div>
+                  <p><label class="clicker" data-toggle="tooltip" data-placement="right" title="Click to See Full Review"><i class="fa fa-ellipsis-h"></i></label></p>
+                  <div class="collapse">
+                    <div>
+                      <p class="lead">Type of Program</p>
+                      <p>
+                      Year the Interview Took Place: {{year}} <br>
+                      How Did I Secure the Interview: {{secureJob}} <br>
+                      Process Duration: {{proDura}} <br>
+                      Process Description: {{proDesc}}
+                      <hr>
+                      <p class="lead">Questions</p>
+                      <p>
+                      Question 1: {{question1}} <br>
+                      Answer 1: {{answer1}} <br>
+                      <hr>
+                      <p class="lead">Feedback</p>
+                      <p>
+                      I was offered the job: {{gotIt}}
+                      <hr>
+                      <p class="lead">Star Ratings</p>
+                      <div class="stars">Interview Difficulty
+                        <span class="stars2">{{intDiff}} </span>
+                      </div>
+                    </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="fourth">
+          <div class="companyforum">
+            <h4>Forum:{{#if veteran}}<a type="button" class="label label-info" id="question">Ask a Question</a>{{/if}}</h4>
+            <div id="forum">
+              {{#each Questions}}
+                <div class="well">
+                  <h3>{{subject}}</h3>
+                  <label id="{{_id}}">{{body}}</label><br>
+                  <span id="score{{_id}}">{{score}}</span> people found this question helpful
+                  <br>
+                  <br>
+                  <a class="btn btn-default" onClick="onReply()" value="{{_id}}">Reply</a>
+                  <a role="button" class="btn btn-default" onClick="upVote()" value="{{_id}}">Upvote</a>
+                  <br>
+                  <br>
+                  Replies:
+                  <div id="replies{{_id}}">
+                  {{#each answers}}
+                    <div style="margin-left: 20px">
+                      <h4>{{body}}</h4>
+                    </div>
+                  {{/each}}
+                  </div>
+                </div>
+              {{/each}}
+              </div>
+          </div>
+        </div>
+      </div>
+  </div>
+{{/if}}
+		</div><!--end of body content-->
+</div><!--end of container fluid-->
+</div>

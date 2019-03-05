@@ -1,0 +1,457 @@
+<!-- menu -->
+  <div class="mainBtn toggle" style="display: block;" id="navToggle">
+  </div>
+  <div id="wrapper" class="toggled">
+
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <br>
+        <br>
+        <br>
+        <br>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/editProfile">Profile</a></li>
+          <li><a href="/logout">Logout</a></li>
+          <hr>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/feedback">Feedback</a></li>
+          <li><a href="/termsOfUse">Terms of Use</a></li>
+          <li><a href="/cookiepolicy">Cookie Policy</a></li>
+      </ul>
+  </div>
+
+<!-- EDIT DEMOGRAPHICS MODAL -->
+<div class="modal fade" id="demographicsModal" role="dialog" aria-labelledby="demographicsModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="demographicsModalTitle">Edit Demographics</h4>
+			</div>
+			<form id='demographicsForm'>
+        Please type in the boxes.
+				<div class="modal-body">
+          <div class="row">
+					<div class="form-group col-xs-4">
+						<input type="text" class="form-control" id="firstName" name="firstName" placeholder="John" required>
+						<label>First Name</label>
+					</div>
+					<div class="form-group col-xs-4">
+						<input type="text" class="form-control" id="lastName" name="lastName" placeholder="Doe" required>
+						<label>Last Name</label>
+					</div>
+					<div class="form-group col-xs-4">
+						<input type="text" class="form-control" id="location" name="location" placeholder="Example, EX" required>
+						<label>Location</label>
+					</div>
+        </div>
+        <div class="row" style="background-color: #f7f9fa; padding-top: 10px;">
+					<fieldset class="form-group">
+						<select class="form-control" name='status' id="status">
+							<option value=''>----Please Select a Status----</option>
+						</select>
+						<label>Current Military Status</label>
+					</fieldset>
+          <fieldset class="form-group">
+            <select class="form-control" id="race" name="race">
+              <option value=''>----Please Select an Ethnicity----</option>
+            </select>
+            <label>Race/Ethnicity</label>
+          </fieldset>
+        </div>
+					<label>ETS Date</label>
+					<fieldset class="form-group">
+						<div class="form-inline">
+							<select class="form-control" id="ETSMonth" name="ETSMonth">
+								<option value=''>----Select a Month----</option>
+							</select>
+							<select class="form-control" id="ETSDay" name="ETSDay">
+								<option value=''>----Select a Day----</option>
+							</select>
+							<select class="form-control" id="ETSYear" name="ETSYear">
+								<option value=''>----Select a Year----</option>
+							</select>
+						</div>
+					</fieldset>
+        <div class="row" style="background-color: #f7f9fa; padding-top: 10px; margin-bottom: 10px">
+          <fieldset class="form-group col-xs-6" id='gender' style="margin-right: 10px">
+            <div class="form-control" style="display: inline-flex;">
+              <div class="toggle-button toggle-button--niitty" style="margin: 0">
+                <input name="TCE" id="TCEYes" value="Yes" type="radio">
+                <label for="TCEYes" style="width: 70px">Yes</label>
+                <div class="toggle-button__icon"></div>
+              </div>
+              <div class="toggle-button toggle-button--niitty" style="margin: 0">
+                <input name="TCE" id="TCENo" value="No" type="radio">
+                <label for="TCENo" style="width: 70px">No</label>
+                <div class="toggle-button__icon"></div>
+              </div>
+          </div>
+            <label>Work Opportunity Tax Credit Eligible?</label>
+          </fieldset>
+					<fieldset class="form-group col-xs-6" id='gender' style="margin-right: 10px">
+            <div class="form-control" style="display: inline-flex;">
+              <div class="toggle-button toggle-button--niitty" style="margin: 0">
+                <input name="gender" id="genderMale" value="Male" type="radio">
+                <label for="genderMale" style="width: 70px">Male</label>
+                <div class="toggle-button__icon"></div>
+              </div>
+              <div class="toggle-button toggle-button--niitty" style="margin: 0">
+                <input name="gender" id="genderFemale" value="Female" type="radio">
+                <label for="genderFemale" style="width: 70px">Female</label>
+                <div class="toggle-button__icon"></div>
+              </div>
+          </div>
+            <label>Gender</label>
+					</fieldset>
+          </div>
+        <div class="row">
+          <fieldset class="form-group col-xs-6">
+						<input type="text" class="form-control" id="MOS" name="MOS" placeholder="Type here...">
+  					<label>Military Occupational Specialty</label>
+					</fieldset>
+        </div>
+        <div class="row" style="background-color: #f7f9fa; padding-top: 10px; margin-bottom: 10px">
+          <fieldset class="form-group col-xs-5">
+						<select class="form-control" id="branch" name="branch">
+							<option value=''>----Please Select a Branch----</option>
+						</select>
+  					<label>Service Branch</label>
+					</fieldset>
+					<fieldset class="form-group col-xs-5">
+						<select class="form-control" id="payGrade" name="payGrade">
+							<option value=''>----Please Select a Pay Grade----</option>
+						</select>
+            <label>Highest Pay Grade</label>
+					</fieldset>
+        </div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- EDIT JOBS, EDUCATION, AND INTERVIEWS MODAL -->
+<div class="modal fade" id="jobsEdIntModal" role="dialog" aria-labelledby="jobsEdIntModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="jobsEdIntModalTitle">Edit Jobs, Education, and Interviews</h4>
+			</div>
+			<form id="jobsEdIntForm">
+        Please type in the box, then add more.
+				<div class="modal-body">
+					<div class="form-group">
+						Companies Worked For:
+						<div class="input_fields_wrap_companiesWorked" id='companiesWorked'>
+						</div>
+						<button class="btn btn-default add_field_button_companiesWorked">+Add More</button>
+					</div>
+					<br>
+					<div class="form-group">
+						Companies Interviewed For <small class="form-text text-muted">(exclude those worked for):</small>
+						<div class="input_fields_wrap_companiesInterviewed" id='companiesInterviewed'>
+						</div>
+						<button class="btn btn-default add_field_button_companiesInterviewed">+Add More</button>
+					</div>
+					<br>
+					<div class="form-group">
+						Education Programs Attended:
+						<div class="input_fields_wrap_eduAttended" id='eduAttended'>
+						</div>
+						<button class="btn btn-default add_field_button_eduAttended">+Add More</button>
+					</div>
+					<br>
+					<div class="form-group">
+						Education Programs Interviewed For <small class="form-text text-muted">(exclude those worked for):</small>
+						<div class="input_fields_wrap_eduInterviewed" id='eduInterviewed'>
+						</div>
+						<button class="btn btn-default add_field_button_eduInterviewed">+Add More</button>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- EDIT INTERESTS MODAL -->
+<div class="modal fade" id="interestsModal" role="dialog" aria-labelledby="interestsModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="interestsModalTitle">Edit Interests</h4>
+			</div>
+			<form id="interestsForm">
+        Please type in the box, then add more.
+				<div class="modal-body">
+					<div class="form-group">
+						Companies I'm Interested In:
+						<div class="input_fields_wrap_companiesInterested" id='companiesInterested'>
+						</div>
+						<button class="btn btn-default add_field_button_companiesInterested">+Add More</button>
+					</div>
+					<div class="form-group">
+						Educational Programs I'm Interested In:
+						<div class="input_fields_wrap_eduInterested" id='eduInterested'>
+						</div>
+						<button class="btn btn-default add_field_button_eduInterested">+Add More</button>
+					</div>
+					<div class="form-group">
+						Functions I'm Interested In:
+						<div class="input_fields_wrap_functions" id='functions'>
+						</div>
+						<button class="btn btn-default add_field_button_functions">+Add More</button>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- EDIT COMPANY USER MODAL -->
+<div class="modal fade" id="cUserModal" role="dialog" aria-labelledby="cUserModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="cUserModalTitle">Edit User Info</h4>
+			</div>
+			<form id="cUserForm">
+        <br>
+        <div class="row">
+        <div class="form-group col-xs-10">
+          <input type="text" name="pocName" class="form-control" id="pocName" placeholder="John" autofocus required>
+          <label>Point of Contact Name</label>
+        </div>
+      </div>
+      <div class="row">
+      <div class="form-group col-xs-10">
+        <input type="text" name="pocDLine" class="form-control" id="pocDLine" placeholder="John" required>
+        <label>Point of Contact Direct Line</label>
+      </div>
+    </div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- VETERAN HANDLER -->
+{{#if veteran}}
+<div class="background">
+<div class="card">
+  <div class="cover">
+    <div class="image"></div>
+    <div class="corner"></div>
+  </div>
+  <div class="profile">
+  		{{#if user.facebookId}}
+  		<img class="circle" src="https://graph.facebook.com/{{user.facebookId}}/picture?type=large"></img>
+  		{{else if user.picture}}
+  		<img class="circle" src="{{user.picture}}"></img>
+  		{{else}}
+  		<img class="circle" src="/images/profile.png"></img>
+  		{{/if}}
+	</div>
+  <div class="info">
+    <div class="namecard">
+      <h2 id='fName'>{{veteranInfo.firstName}}</h2><h2 id='lName'>{{veteranInfo.lastName}}</h2>
+    </div>
+    <div id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="demographics-head">
+              DEMOGRAPHICS
+            </a> <a type="button" class="label label-info" id="demographics">Edit</a>
+          </h4>
+        </div>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="data">
+        <div class="following">
+          <div class="number">LOCATION</div>
+          <p id='loc'>{{veteranInfo.location}}</p>
+        </div>
+        <div class="following">
+          <div class="number">STATUS</div>
+          <p id='stat'>{{veteranInfo.status}}</p>
+        </div>
+        <div class="following">
+          <div class="number">ETS</div>
+          <p id='ets'>{{date.month}} {{date.day}}, {{date.year}}</p>
+        </div>
+        </div>
+        <div class="data">
+        <div class="following">
+          <div class="number">PAY GRADE</div>
+          <p id='pGrade'>{{veteranInfo.payGrade}}</p>
+        </div>
+        <div class="following">
+          <div class="number">BRANCH</div>
+          <p id='bran'>{{veteranInfo.branch}}</p>
+        </div>
+        <div class="following">
+          <div class="number">MOS</div>
+          <p id='mos'>{{veteranInfo.MOS}}</p>
+        </div>
+        </div>
+      <div class="data">
+        <div class="following">
+          <div class="number">GENDER</div>
+          <p id='gend'>{{veteranInfo.gender}}</p>
+        </div>
+          <div class="following">
+            <div class="number">ETHNICITY</div>
+            <p id='ethnic'>{{veteranInfo.race}}</p>
+          </div>
+          <div class="following">
+            <div class="number">TCE</div>
+            <p id='tce'>{{veteranInfo.TCE}}</p>
+          </div>
+      </div>
+  </div> <!--end of demo-->
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          JOBS, EDUCATION, AND INTERVIEWS
+        </a><a type="button" class="label label-info" id="jobsEdInt">Edit</a>
+      </h4>
+    </div>
+  </div>
+  <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+    <div class="data">
+    <div class="followers">
+      <div class="number">COMPANIES WORKED</div>
+  		{{#each veteranInfo.companiesWorked}}
+  			<span class="label label-info" data-name="cWorked">{{this}}</span>
+  		{{/each}}
+    </div>
+    <div class="followers">
+      <div class="number">COMPANIES INTERVIEWED</div>
+  		{{#each veteranInfo.companiesInterviewed}}
+  			<span class="label label-warning" data-name='cInt'>{{this}}</span>
+  		{{/each}}
+    </div>
+    </div>
+    <div class="data">
+      <div class="followers">
+        <div class="number">PROGRAMS ATTENDED</div>
+        {{#each veteranInfo.eduAttended}}
+          <span class="label label-primary" data-name='eAttend'>{{this}}</span>
+        {{/each}}
+      </div>
+      <div class="followers">
+        <div class="number">PROGRAMS INTERVIEWED</div>
+    		{{#each veteranInfo.eduInterviewed}}
+    			<span class="label label-success" data-name='eInt'>{{this}}</span>
+    		{{/each}}
+      </div>
+    </div>
+</div> <!--end of demo-->
+<div class="panel panel-default">
+  <div class="panel-heading" role="tab" id="headingThree">
+    <h4 class="panel-title">
+      <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        INTERESTS
+      </a><a type="button" class="label label-info" id="interests">Edit</a>
+    </h4>
+  </div>
+</div>
+  <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+    <div class="data">
+      <div class="following">
+        <div class="number">COMPANIES INTERESTED IN:</div>
+        {{#each veteranInfo.companiesInterested}}
+          <span class="label label-primary" data-name='cRested'>{{this}}</span>
+        {{/each}}
+      </div>
+      <div class="following">
+        <div class="number">PROGRAMS INTERESTED IN:</div>
+        {{#each veteranInfo.eduInterested}}
+          <span class="label label-success" data-name='eRested'>{{this}}</span>
+        {{/each}}
+      </div>
+      <div class="following">
+        <div class="number">FUNCTIONS INTERESTED IN:</div>
+        {{#each veteranInfo.functions}}
+          <span class="label label-warning" data-name='fRested'>{{this}}</span>
+        {{/each}}
+      </div>
+    </div>
+  </div> <!--end of demo-->
+  </div><!--end of panel-->
+  </div><!--end of accordian-->
+  </div><!--end of info-->
+  </div><!--end of card-->
+</div><!--end of veteran-->
+<!-- COMPANY HANDLER -->
+{{else}}
+	<div class="background">
+	<div class="card">
+	  <div class="cover">
+	    <div class="image"></div>
+	    <div class="corner"></div>
+	  </div>
+	  <div class="profile">
+  		{{#if user.picture}}
+  		<img class="circle" src="{{user.picture}}"></img>
+  		{{else}}
+  		<img class="circle" src="/images/profile.png"></img>
+  		{{/if}}
+		</div>
+	  <div class="info">
+	    <div class="namecard">
+	      <h2 id='pointName'>{{pocName}}</h2>
+	    </div>
+	    <div class="description">
+	    </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab">
+          <h4 class="panel-title companyinfo">
+            <a class="collapsed" data-toggle="collapse" aria-expanded="false" >
+              INFO
+            </a><a type="button" class="label label-info" id="cUser">Edit</a>
+          </h4>
+        </div>
+      </div>
+	    <div class="data">
+	      <div class="followers">
+	        <div class="number">DIRECT LINE</div>
+	        <p id='pointDLine'>{{pocDLine}}</p>
+	      </div>
+	      <div class="followers">
+	        <div class="number">EMAIL</div>
+	        <p id='pointEmail'>{{email}}</p>
+        </div>
+	    </div>
+	  </div>
+	</div>
+	</div>
+{{/if}}

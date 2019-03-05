@@ -1,0 +1,35 @@
+<!-- ERROR RENDERING -->
+{{#if error}}
+    <div class="alert alert-danger" role="alert">
+        <i class="fa fa-exclamation" aria-hidden="true"></i>
+        <span class="sr-only">Error:</span>
+      {{error}}
+    </div>
+{{/if}}
+
+<div class="paper">
+  <div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+    <h1 class="title">Feedback</h1>
+    <p>We want to hear from you! What are we missing? <br>What can we improve?<p>
+      <form method='POST'>
+        <div class="form-group two-col">
+          <textarea class="form-control" id="exampleTextarea" name='thoughts' rows="4" placeholder="What are your thoughts?"></textarea>
+          <label for="exampleTextarea">Message</label>
+        </div>
+        <div class="form-group three-col">
+          <button type="submit" class="btn btn-primary">Send feedback</button>
+        </div>
+      </form>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom hidden-xs">
+  <div class="container">
+    <p class="navbar-text"><a href="/FAQ" class="navbar-link">FAQ<a/></p>
+    <p class="navbar-text"><a href="/Feedback" class="navbar-link">FEEDBACK<a/></p>
+    <p class="navbar-text"><a href="/TermsOfUse" class="navbar-link">TERMS OF USE<a/></p>
+    <p class="navbar-text"><a href="/CookiePolicy" class="navbar-link">COOKIE POLICY<a/></p>
+    <a href="/register" type="button" class="btn btn-info navbar-right">Register</a>
+  </div>
+</nav>

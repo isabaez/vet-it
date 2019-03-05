@@ -1,0 +1,146 @@
+<h1>My Job Interview</h1>
+<form class="form-horizontal" role="form" method="POST">
+<h2>{{name}}</h2>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="title">Position Title</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="title" name="title" autofocus required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="year">Year Interviewed</label>
+    <div class="col-sm-10">
+      <select class="form-control" id="year" name="year">
+      <!-- how to make it show from start year to current -->
+        <option>1970</option>
+        <option>1971</option>
+        <option>1972</option>
+        <option>1973</option>
+        <option>1974</option>
+        <option>1975</option>
+        <option>1976</option>
+        <option>1977</option>
+        <option>1978</option>
+        <option>1979</option>
+        <option>1980</option>
+        <option>1981</option>
+        <option>1982</option>
+        <option>1983</option>
+        <option>1984</option>
+        <option>1985</option>
+        <option>1986</option>
+        <option>1987</option>
+        <option>1988</option>
+        <option>1989</option>
+        <option>1990</option>
+        <option>1991</option>
+        <option>1992</option>
+        <option>1993</option>
+        <option>1994</option>
+        <option>1995</option>
+        <option>1996</option>
+        <option>1997</option>
+        <option>1998</option>
+        <option>1999</option>
+        <option>2000</option>
+        <option>2001</option>
+        <option>2002</option>
+        <option>2003</option>
+        <option>2004</option>
+        <option>2005</option>
+        <option>2006</option>
+        <option>2007</option>
+        <option>2008</option>
+        <option>2009</option>
+        <option>2010</option>
+        <option>2011</option>
+        <option>2012</option>
+        <option>2013</option>
+        <option>2014</option>
+        <option>2015</option>
+        <option>2016</option>
+        <option>2017</option>
+        <option>2018</option>
+        <option>2019</option>
+        <option>2020</option>
+        <option>2021</option>
+        <option>2022</option>
+        <option>2023</option>
+        <option>2024</option>
+        <option>2025</option>
+        <option>2026</option>
+        <option>2027</option>
+        <option>2028</option>
+        <option>2029</option>
+        <option>2030</option>
+      </select>
+    </div>
+  </fieldset>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="OE">Overall Experience</label>
+    <div class="col-sm-10">
+      <div class="stars" id="OE">
+        <input class="star star-5" id="star-5" value="5" type="radio" name="OE"/>
+        <label class="star star-5" for="star-5"></label>
+        <input class="star star-4" id="star-4" value="4" type="radio" name="OE"/>
+        <label class="star star-4" for="star-4"></label>
+        <input class="star star-3" id="star-3" value="3" type="radio" name="OE"/>
+        <label class="star star-3" for="star-3"></label>
+        <input class="star star-2" id="star-2" value="2" type="radio" name="OE"/>
+        <label class="star star-2" for="star-2"></label>
+        <input class="star star-1" id="star-1" value="1" type="radio" name="OE"/>
+        <label class="star star-1" for="star-1"></label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input_QA_wrap">
+      <label class="control-label col-sm-2" for="question">Question 1</label>
+      <div class="col-sm-10">
+        <textarea name="question" id="question1" rows="4" cols="50"></textarea>
+      </div>
+      <label class="control-label col-sm-2" for="answer">Answer 1</label>
+      <div class="col-sm-10">
+        <textarea name="answer" id="answer1" rows="4" cols="50"></textarea>
+      </div>
+    </div>
+    <button class="add_QA_button">+Add More Q/A</button>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="intDiff">Interview Difficulty</label>
+    <div class="col-sm-10">
+      <div class="stars" id="intDiff">
+        <input class="star star-5" value='5' id="star-10" type="radio" name="intDiff"/>
+        <label class="star star-5" for="star-10"></label>
+        <input class="star star-4" value='4' id="star-9" type="radio" name="intDiff"/>
+        <label class="star star-4" for="star-9"></label>
+        <input class="star star-3" value='3' id="star-8" type="radio" name="intDiff"/>
+        <label class="star star-3" for="star-8"></label>
+        <input class="star star-2" value='2' id="star-7" type="radio" name="intDiff"/>
+        <label class="star star-2" for="star-7"></label>
+        <input class="star star-1" value='1' id="star-6" type="radio" name="intDiff"/>
+        <label class="star star-1" for="star-6"></label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="posFeed">Positive FeedBack</label>
+    <div class="col-sm-10">
+      <textarea name="posFeed" id="posFeed" rows="4" cols="50"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="negFeed">Negative FeedBack</label>
+    <div class="col-sm-10">
+      <textarea name="negFeed" id="negFeed" rows="4" cols="50"></textarea>
+    </div>
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox" id="gotJob" name="gotJob" value="true">I was offered the job.</label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit Review</button>
+</form>

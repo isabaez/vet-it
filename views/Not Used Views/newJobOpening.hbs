@@ -1,0 +1,52 @@
+{{#if error}}
+    <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+      {{error}}
+    </div>
+{{/if}}
+
+<h1>New Job Posting</h1>
+<form class="form-horizontal" role="form" method="POST">
+<h2>{{company.name}}</h2>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="positionType">Type of Position</label>
+    <div class="col-sm-10">
+      <select name="positionType" class="target input_Position_wrap" id="positionType">
+        <option value=''>----Please Select the Type of Position----</option>
+        {{#each typesOfJobs}}
+          <option value='{{this}}'>{{this}}</option>
+        {{/each}}
+        <option class="other" value="Other">New Position Type - Please Specify Below</option>
+      </select>
+    </div>
+    <div id="newPosition" class="col-sm-10 newPosition">
+      <input type="text" class="form-control" id="newPositionVal" name="newPosition" placeholder="New Position">
+      <button class="add_Position_button">+Add Position Type</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="positionTitle">Position Title</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="positionTitle" name="positionTitle" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="unit">Business Unit</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="unit" name="unit" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="location">Location</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="location" name="location" required>
+    </div>
+  </div>
+
+  <a class="btn btn-default" href="/companyProfile/{{company._id}}">Cancel</a>
+  <button type="submit" id="postJob" class="btn btn-default">Post Job Opening</button>
+</form>
+
+<script src="/newJobOpening.js">
+</script>

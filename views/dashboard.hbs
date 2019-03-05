@@ -1,0 +1,566 @@
+<!-- MODAL FOR ADDING A COMPANY -->
+<div class="modal fade" id="addCompanyModal" role="dialog" aria-labelledby="addCompanyModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="modal-title" id="addCompanyModalTitle">Add Company</h3>
+      </div>
+      <form id='addCompanyForm'>
+        <div class="modal-body">
+          <div class="row">
+            <div class="form-group col-xs-10">
+              <input type="text" class="form-control" id="name" name="name" placeholder="VetIt" required autofocus>
+              <label>Company Name</label>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="form-group col-xs-10" id='companyType'>
+              <div class="form-control" style="display: inline-flex;">
+                <div class="toggle-button toggle-button--niitty" style="margin: 0">
+                  <input id="Educator" name="type" value="Educator" type="radio">
+                  <label for="Educator">EDUCATOR</label>
+                  <div class="toggle-button__icon" style="border-color: #eceef4"></div>
+                </div>
+                <div class="toggle-button toggle-button--niitty" style="margin: 0">
+                  <input id="Employer" name="type" value="Employer" type="radio">
+                  <label for="Employer">EMPLOYER</label>
+                  <div class="toggle-button__icon" style="border-color: #eceef4"></div>
+                </div>
+              </div>
+              <label>Company Type</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- ERROR RENDERING -->
+{{#if error}}
+<div class="alert alert-danger" role="alert">
+  <i class="fa fa-exclamation" aria-hidden="true"></i>
+  <span class="sr-only">Error:</span>
+  {{error}}
+</div>
+{{/if}}
+<!-- menu -->
+<div class="mainBtn toggle" style="display: block;" id="navToggle">
+</div>
+<div id="wrapper" class="toggled">
+
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <br>
+      <br>
+      <br>
+      <br>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/editProfile">Profile</a></li>
+      <li><a href="/logout">Logout</a></li>
+      <hr>
+      <li><a href="/FAQ">FAQ</a></li>
+      <li><a href="/Feedback">Feedback</a></li>
+      <li><a href="/TermsOfUse">Terms of Use</a></li>
+      <li><a href="/CookiePolicy">Cookie Policy</a></li>
+    </ul>
+  </div>
+</div>
+
+  <!-- SEARCH RENDERING -->
+  {{#if search}}
+  <div class="container-fluid" style="padding:0; width: 100vw">
+    <div class="row" style="flex-direction: column">
+    <div class="col-xs-12 searchbar searchy">
+      <form class="navbar-form" role="search" method="POST">
+        <a class="btn btn-primary" href="/companies">Browse Companies</a>
+        <a class="btn btn-primary" href="/schools">Browse Schools</a>
+        <div class="form-group" style="justify-content: center;">
+          <i class="fa fa-search" aria-hidden="true" style="margin:10px;"></i>
+          <input type="text" class="search-control" name="searchCompanyName" placeholder="Search for a company..." required>
+        </div>
+        <div class="form-group">
+          <div class="toggle-button toggle-button--niitty">
+            <input id="Educator2" name="searchCompanyType" value="Educator" type="radio">
+            <label for="Educator2">EDUCATOR</label>
+            <div class="toggle-button__icon"></div>
+          </div>
+          <div class="toggle-button toggle-button--niitty">
+            <input id="Employer1" name="searchCompanyType" value="Employer" type="radio">
+            <label for="Employer1">EMPLOYER</label>
+            <div class="toggle-button__icon"></div>
+          </div>
+          <div class="toggle-button toggle-button--niitty">
+            <input id="Both" name="searchCompanyType" value="Both" type="radio">
+            <label for="Both" style="width: 60px">BOTH</label>
+            <div class="toggle-button__icon"></div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+      </form>
+      <ul class="pagination myFilters hidden-xs">
+      </ul>
+    </div>
+    <h3 class="searchtitle">Search Results</h3>
+    <ul class='myFilterItems list-group'>
+      {{#each companies}}
+      <li>
+        <a class="listy" href="/companyprofile/{{_id}}" >{{name}}</a>
+      </li>
+      {{/each}}
+    </ul>
+    <div>
+      <p>Can't Find What You're Looking For? </p>
+      <button class="btn btn-default" id="addCompany">+Add Company</button>
+    </div>
+  </div>
+    </div>
+  <!-- veteran dashboard -->
+  {{else if veteran}}
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <!-- mobile version -->
+      <div class="hidden-sm hidden-md hidden-lg col-xs-12" style="padding:0">
+        <div class="dashboard">
+          <br>
+          <br>
+          <h2>{{userInfo.firstName}} {{userInfo.lastName}}
+          </h2>
+          <label>VETERAN DASHBOARD</label>
+          <a type="button" class="label label-info" href="/editProfile">Edit Profile</a>
+        </div>
+      </div>
+
+      <!--Sidebar content-->
+      <div class="hidden-xs col-sm-4 col-md-3" style="padding:0">
+        <div class="dashboard">
+          <br>
+          <br>
+          <h2>{{userInfo.firstName}} {{userInfo.lastName}}</h2>
+          <label>VETERAN DASHBOARD</label>
+          <a type="button" class="label label-info" href="/editProfile">Edit Profile</a>
+          <a class="btn btn-default" href="/companies">Browse Companies</a>
+          <a class="btn btn-default" href="/schools">Browse Schools</a>
+          <hr>
+          <div id="clickme">
+            <label data-toggle="tooltip" data-placement="right" title="Click to Hide Followers">Following</label>
+          </div>
+          <div id="book">
+            {{#each companies}}
+            <div>
+              <a class="btn btn-link small" href="/companyProfile/{{_id}}">{{name}}</a>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-8 col-md-9" style="padding:0">
+        <div class="searchbar">
+          <form class="navbar-form" role="search" method="POST" style="float:left">
+            <div class="form-group" style="justify-content: center;">
+              <i class="fa fa-search" aria-hidden="true" style="margin:10px;"></i>
+              <input type="text" class="search-control" name="searchCompanyName" placeholder="Search for a company..." required>
+            </div>
+            <div class="form-group">
+              <div class="toggle-button toggle-button--niitty">
+                <input id="Educator2" name="searchCompanyType" value="Educator" type="radio">
+                <label for="Educator2">EDUCATOR</label>
+                <div class="toggle-button__icon"></div>
+              </div>
+              <div class="toggle-button toggle-button--niitty">
+                <input id="Employer1" name="searchCompanyType" value="Employer" type="radio">
+                <label for="Employer1">EMPLOYER</label>
+                <div class="toggle-button__icon"></div>
+              </div>
+              <div class="toggle-button toggle-button--niitty">
+                <input id="Both" name="searchCompanyType" value="Both" type="radio">
+                <label for="Both" style="width: 60px">BOTH</label>
+                <div class="toggle-button__icon"></div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+          </form>
+        </div>
+        <div class="container" style='margin-top: 113px; padding:0'>
+          <ul class="nav nav-tabs" role="tablist" id="example-one">
+            <li role="presentation" class="active">
+            <a href="#first" id='empl' aria-controls="first" role="tab" data-toggle="tab">Employer Reviews</a>
+            </li>
+            <li role="presentation">
+              <a href="#second" id='educ' aria-controls="second" role="tab" data-toggle="tab">Educator Reviews</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="first">
+              <div id="scrollEmployers">
+                {{#each companyReviews}}
+                <div class="well emp">
+                  <div class="media">
+                    <div class="media-left">
+                      <a href="#">
+                        <img class="media-object" src="/images/logo-14.png" alt="logo">
+                      </a>
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading"><a href='/companyProfile/{{companyId._id}}'>{{companyId.name}}</a></h4>
+                      <p>Position: {{type}} {{positionTitle}}</p>
+                      <div class="rating">
+                        <div class="stars">
+                          <span class="stars2" style="margin-left: 15px">{{OE}}</span>
+                        </div>
+                        <div class="review container">
+                        <div class="row-fluid">
+                          <div class="rev col-xs-8 col-sm-6" style="padding-left:0">
+                            <span><i class="fa fa-plus-circle" aria-hidden="true" style="color: #5acac7"></i></span> Positive Feedback: <p>{{posFeed}}</p>
+                          </div>
+                          <div class="rev col-xs-8 col-sm-6" style="padding-left:0">
+                            <span><i class="fa fa-minus-circle" aria-hidden="true" style="color: #e37674"></i></span> Negative Feedback: <p>{{negFeed}}</p>
+                          </div>
+                        </div>
+                        </div>
+                        <small style="color:grey">{{date}}</small>
+                      </div>
+                      <p><label class="clicker" data-toggle="tooltip" data-placement="right" title="Click to See Full Review"><i class="fa fa-ellipsis-h"></i></label></p>
+                      <div class="collapse">
+                        <div>
+                          <p class="lead">Timeline</p>
+                          <p>This is my {{afterDuty}} job after duty.
+                          <br>
+                          How Long: {{howLong}}
+                          <hr>
+                          <p class="lead">Salary Reviews</p>
+                          <p>Salary: ${{salary}}
+                          <br>
+                          Bonuses: ${{bonuses}}
+                          <br>
+                          Tips: ${{tips}}
+                          <br>
+                          Sales Commission: ${{salesComm}}
+                          <hr>
+                          <p class="lead">Recommendations</p>
+                          <p>Why did I leave?: {{whyLeft}}
+                          <br>
+                          I {{militaryBack}} recommend this to someone with your military background.
+                          <br>
+                          I {{eduBack}} recommend this to someone with your education background.
+                          <hr>
+                          <p class="lead">Star Ratings</p>
+                          <div class="stars">Company Mission
+                            <span class="stars2">{{CM}} </span>
+                          </div>
+                          <br>
+                          <div class="stars">Company Culture
+                            <span class="stars2">{{CC}} </span>
+                          </div>
+                          <br>
+                          <div class="stars">Onboarding Program
+                            <span class="stars2">{{OP}} </span>
+                          </div>
+                          <br>
+                          <div class="stars">Professional Development Program
+                            <span class="stars2">{{PDP}} </span>
+                          </div>
+                          <br>
+                          <div class="stars">CEO Understand Veterans' Value
+                            <span class="stars2">{{CEO}} </span>
+                          </div>
+                          <br>
+                        </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {{/each}}
+              </div>
+            </div>
+            <!-- THIS IS NOT SHOWING UP -->
+            <div role="tabpanel" class="tab-pane" id="second">
+              <div id="scrollEducators">
+                {{#each educationReviews}}
+                <div class="well edu">
+                  <div class="media">
+                    <div class="media-left">
+                      <a href="#">
+                        <img class="media-object" src="/images/logo-14.png" alt="...">
+                      </a>
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading"><a href='/companyProfile/{{companyId._id}}'>{{companyId.name}}</a></h4>
+                      <p>Program: {{programTitle}}</p>
+                      <div class="rating">
+                      <div class="stars">
+                        <span class="stars2" style="margin-left: 15px">{{OPE}} </span>
+                      </div>
+                      <div class="review container">
+                        <div class="row-fluid">
+                        <div class="rev col-xs-8 col-sm-6" style="padding-left:0">
+                          <span><i class="fa fa-plus-circle" aria-hidden="true" style="color: #5acac7"></i></span> Positive Feedback: <p>{{posFeed}}</p>
+                        </div>
+                        <div class="rev col-xs-8 col-sm-6" style="padding-left:0">
+                          <span><i class="fa fa-minus-circle" aria-hidden="true" style="color: #e37674"></i></span> Negative Feedback: <p>{{negFeed}}</p>
+                        </div>
+                      </div>
+                      </div>
+                      <small style="color:grey">{{date}}</small>
+                    </div>
+                    <p><label class="clicker" data-toggle="tooltip" data-placement="right" title="Click to See Full Review"><i class="fa fa-ellipsis-h"></i></label></p>
+                    <div class="collapse">
+                      <div>
+                        <p class="lead">Timeline</p>
+                        <p>
+                        Type of Training: {{trainType}} <br>
+                        Funding Benefits Used: {{funding}} <br>
+                        How much did I qualify from GI Bill: {{GIBill}}
+                        <hr>
+                        <p class="lead">Program Evaluation</p>
+                        <p>
+                        Paid out of pocket: ${{pocket}} <br>
+                        Housing Allowance: ${{allowance}} <br>
+                        Completed the program?: {{complete}} <br>
+                        Credential Result: {{result}}
+                        <hr>
+                        <p class="lead">Recommendations</p>
+                        <p>
+                        I {{militaryBack}} recommend this to someone with your military background
+                        <br>
+                        I {{eduBack}} recommend this to someone with your education background
+                        <hr>
+                        <p class="lead">Star Ratings</p>
+                        <div class="stars">Staff Quality
+                          <span class="stars2">{{SQ}} </span>
+                        </div>
+                        <br>
+                        <div class="stars">Faculty Quality
+                          <span class="stars2">{{FQ}} </span>
+                        </div>
+                        <br>
+                        <div class="stars">Resource Quality
+                          <span class="stars2">{{RQ}} </span>
+                        </div>
+                        <br>
+                        <div class="stars">Campus Quality
+                          <span class="stars2">{{CQ}} </span>
+                        </div>
+                        <br>
+                        <div class="stars">Campus Social Life
+                          <span class="stars2">{{CSL}} </span>
+                        </div>
+                        <br>
+                        <div class="stars">Staff understanding DoD TA/GI Bill Benefits
+                          <span class="stars2">{{understand}} </span>
+                        </div>
+                      </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                {{/each}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+          <script>
+          var starCount = 3;
+          var win = $(window);
+            var type = 'emp';
+           var loading = false;
+
+           //click events
+           $('#empl').click(function(e){
+             type = 'emp';
+             console.log(type);
+           });
+           $('#educ').click(function(e){
+             type = 'edu';
+             console.log(type);
+           });
+
+            // Each time the user scrolls
+            win.scroll(function() {
+              // End of the document reached?
+              if(window.scrollY>=$(document).height()-window.innerHeight && !loading) {
+               loading = true;
+                counter= $('.'+type).length/10;
+                if (counter !== Math.ceil(counter)){
+                 loading = false;
+                 return;
+                };
+                starCount++;
+                $.ajax({
+                    url: '/scrollMore/'+type+'/'+counter,
+                    dataType: 'json',
+                    success: function(nextTen) {
+                     for(var i=0; i<nextTen.length; i++) {
+                       if(type ==='emp') {
+                         $('#scrollEmployers').append('<div class="well emp"><div class="media"><div class="media-left"><a href="#"><img class="media-object" src="/images/logo-14.png" alt="logo"></a></div><div class="media-body"><h4 class="media-heading"><a href="/companyProfile/'+nextTen[i].companyId._id+'">'+nextTen[i].companyId.name+'</a></h4><p>Position: '+nextTen[i].type+' '+nextTen[i].positionTitle+'</p><div class="rating"><div class="stars"><span class="stars'+starCount+'" style="margin-left: 15px">'+nextTen[i].OE+'</span></div><div class="review container"><div class="row-fluid"><div class="rev col-xs-8 col-sm-6" style="padding-left:0"><span><i class="fa fa-plus-circle" aria-hidden="true" style="color: #5acac7"></i></span> Positive Feedback: <p>'+nextTen[i].posFeed+'</p></div><div class="rev col-xs-8 col-sm-6" style="padding-left:0"><span><i class="fa fa-minus-circle" aria-hidden="true" style="color: #e37674"></i></span> Negative Feedback: <p>'+nextTen[i].negFeed+'</p></div></div></div><small style="color:grey">'+nextTen[i].date+'</small></div><p><label class="clicker'+starCount+'" data-toggle="tooltip" data-placement="right" title="Click to See Full Review"><i class="fa fa-ellipsis-h"></i></label></p><div class="collapse"><p class="lead">Timeline</p><p>This is my '+nextTen[i].afterDuty+' job after duty.<br>How Long: '+nextTen[i].howLong+'<hr><p class="lead">Salary Reviews</p><p>Salary: $'+nextTen[i].salary+'<br>Bonuses: $'+nextTen[i].bonuses+'<br>Tips: $'+nextTen[i].tips+'<br>Sales Commission: $'+nextTen[i].salesComm+'<hr><p class="lead">Recommendations</p><p>Why did I leave?: '+nextTen[i].whyLeft+'<br>I '+nextTen[i].militaryBack+' recommend this to someone with your military background.<br>I '+nextTen[i].eduBack+' recommend this to someone with your education background.<hr><p class="lead">Star Ratings</p><div class="stars">Company Mission <span class="stars'+starCount+'">  '+nextTen[i].CM+'</span></div><br><div class="stars">Company Culture <span class="stars'+starCount+'">  '+nextTen[i].CC+'</span></div><br><div class="stars">Onboarding Program <span class="stars'+starCount+'">  '+nextTen[i].OP+'</span></div><br><div class="stars">Professional Development Program <span class="stars'+starCount+'">'+nextTen[i].PDP+'</span></div><br><div class="stars">CEO Understands Veterans Values <span class="stars'+starCount+'">  '+nextTen[i].CEO+'</span></div></div></div></div></div></div>');
+                       } else if(type ==='edu') {
+                         $('#scrollEducators').append('<div class="well edu"><div class="media"><div class="media-left"><a href="#"><img class="media-object" src="/images/logo-14.png" alt="..."></a></div><div class="media-body"><h4 class="media-heading"><a href="/companyProfile/'+nextTen[i].companyId._id+'">'+nextTen[i].companyId.name+'</a></h4><p>Program: '+nextTen[i].programTitle+'</p><div class="rating"><div class="stars"><span class="stars'+starCount+'" style="margin-left: 15px">'+nextTen[i].OPE+'</span></div><div class="review container"><div class="row-fluid"><div class="rev col-xs-8 col-sm-6" style="padding-left:0"><span><i class="fa fa-plus-circle" aria-hidden="true" style="color: #5acac7"></i></span> Positive Feedback: <p>'+nextTen[i].posFeed+'</p></div><div class="rev col-xs-8 col-sm-6" style="padding-left:0"><span><i class="fa fa-minus-circle" aria-hidden="true" style="color: #e37674"></i></span> Negative Feedback: <p>'+nextTen[i].negFeed+'</p></div></div></div><small style="color:grey">'+nextTen[i].date+'</small></div><p><label class="clicker'+starCount+'" data-toggle="tooltip" data-placement="right" title="Click to See Full Review"><i class="fa fa-ellipsis-h"></i></label></p><div class="collapse"><div><p class="lead">Timeline</p> <p> Type of Training: '+nextTen[i].trainType+' <br> Funding Benefits Used: '+nextTen[i].funding+' <br> How much did I qualify from GI Bill: '+nextTen[i].GIBill+' <hr> <p class="lead">Program Evaluation</p> <p> Paid out of pocket: $'+nextTen[i].pocket+' <br> Housing Allowance: $'+nextTen[i].allowance+' <br> Completed the program?: '+nextTen[i].complete+' <br> Credential Result: '+nextTen[i].result+' <hr> <p class="lead">Recommendations</p> <p> I '+nextTen[i].militaryBack+' recommend this to someone with your military background <br> I '+nextTen[i].eduBack+' recommend this to someone with your education background <hr> <p class="lead">Star Ratings</p> <div class="stars">Staff Quality <span class="stars'+starCount+'">'+nextTen[i].SQ+' </span> </div> <br> <div class="stars">Faculty Quality <span class="stars'+starCount+'">'+nextTen[i].FQ+' </span> </div> <br> <div class="stars">Resource Quality <span class="stars'+starCount+'">'+nextTen[i].RQ+' </span> </div> <br> <div class="stars">Campus Quality <span class="stars'+starCount+'">'+nextTen[i].CQ+' </span> </div> <br> <div class="stars">Campus Social Life <span class="stars'+starCount+'">'+nextTen[i].CSL+' </span> </div> <br> <div class="stars">Staff understanding DoD TA/GI Bill Benefits <span class="stars'+starCount+'">'+nextTen[i].understand+' </span> </div> </p> </div></div></div></div>');
+                       }
+                     }
+                     $(".well:odd").css("background-color", "#ebeff2");
+                     $(".well edu:odd").css("background-color", "#ebeff2");
+                     $('[data-toggle="tooltip"]').tooltip();
+                     $('.clicker'+starCount+'').click(function() {
+                     		$(this).closest('div').find(".collapse").slideToggle();
+                     	});
+                     $.each($('.stars'+starCount+''),function(index, value){
+                         var star = parseInt(value.innerText);
+                         for(var i = 0; i < star; i++){
+                           $(value).after('<span><i class="fa fa-star" aria-hidden="true"></i></span>');
+                         }
+                     });
+                    loading = false;
+                    },
+                    failure: function(err) {
+                     console.log(err);
+                    }
+                });
+              }
+            });
+
+          </script>
+
+
+
+
+
+  <!-- company dashboard -->
+  {{else}}
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <!-- mobile version -->
+      <div class="hidden-sm hidden-md hidden-lg col-xs-12" style="padding:0">
+        <div class="dashboard">
+          <br>
+          <br>
+          <h2>{{user.pocName}}</h2>
+          <label>COMPANY DASHBOARD</label>
+          <a type="button" class="label label-info" href="/editProfile">Edit Profile</a>
+        </div>
+      </div>
+      <!-- sidebar content -->
+      <div class="hidden-xs col-xs-12 col-sm-4 col-md-3" style="padding:0">
+        <div class="dashboard">
+          <br>
+          <br>
+          <h2>{{user.pocName}}</h2>
+          <label>COMPANY DASHBOARD</label>
+          <a type="button" class="label label-info" href="/editProfile">Edit Profile</a>
+          <hr>
+          <label>My Companies</label>
+          <div>
+            {{#each companies}}
+            <div>
+              <a class="btn btn-link small" href="/companyProfile/{{_id}}">{{name}}</a>
+            </div>
+            {{/each}}
+            <div>
+              <a class="btn btn-default" href="/companies">Browse Companies</a>
+              <a class="btn btn-default" href="/schools">Browse Schools</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-offset-4 col-sm-6 col-md-offset-3 col-md-9" style="padding:0">
+        <div class="searchbar">
+          <form class="navbar-form" style="float:left" role="search" method="POST">
+            <div class="form-group" style="justify-content: center;">
+              <i class="fa fa-search" aria-hidden="true" style="margin:10px;"></i>
+              <input type="text" class="search-control" name="searchCompanyName" placeholder="Search for a company..." required>
+            </div>
+            <div class="form-group">
+              <div class="toggle-button toggle-button--niitty">
+                <input id="Educator2" name="searchCompanyType" value="Educator" type="radio">
+                <label for="Educator2">EDUCATOR</label>
+                <div class="toggle-button__icon"></div>
+              </div>
+              <div class="toggle-button toggle-button--niitty">
+                <input id="Employer1" name="searchCompanyType" value="Employer" type="radio">
+                <label for="Employer1">EMPLOYER</label>
+                <div class="toggle-button__icon"></div>
+              </div>
+              <div class="toggle-button toggle-button--niitty">
+                <input id="Both" name="searchCompanyType" value="Both" type="radio">
+                <label for="Both" style="width: 60px">BOTH</label>
+                <div class="toggle-button__icon"></div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+          </form>
+        </div>
+        <h4 style="margin-top:78px;">Most Recent Reviews</h4>
+        {{#each reviews}}
+        {{#if this.employer}}
+        <div class="well">
+          <div class="media">
+            <div class="media-left">
+              <a href="#">
+                <img class="media-object" src="/images/logo-14.png" alt="logo">
+              </a>
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">{{companyId.name}}</h4>
+              <p>Position: {{type}} {{positionTitle}}</p>
+              <div class="rating">
+                <div class="stars">
+                  <span class="stars2" style="margin-left: 15px">{{OE}} </span>
+                </div>
+                <div class="review">
+                  <div class="rev col-xs-8 col-sm-6">
+                    <span><i class="fa fa-plus-circle" aria-hidden="true" style="color: #5acac7"></i></span> Positive Feedback: <p>{{posFeed}}</p>
+                  </div>
+                  <div class="rev col-xs-8 col-sm-6">
+                    <span><i class="fa fa-minus-circle" aria-hidden="true" style="color: #e37674"></i></span> Negative Feedback: <p>{{negFeed}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{else}}
+        <div>
+          <div class="well">
+            <div class="media">
+              <div class="media-left">
+                <a href="#">
+                  <img class="media-object" src="/images/logo-14.png" alt="...">
+                </a>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">{{companyId.name}}</h4>
+                <p>Program: {{programTitle}}</p>
+                <div class="stars">
+                  <span class="stars2" style="margin-left: 15px">{{OPE}} </span>
+                </div>
+                <div class="review">
+                  <div class="rev col-xs-8 col-sm-6">
+                    <span><i class="fa fa-plus-circle" aria-hidden="true" style="color: #5acac7"></i></span> Positive Feedback: <p>{{posFeed}}</p>
+                  </div>
+                  <div class="rev col-xs-8 col-sm-6">
+                    <span><i class="fa fa-minus-circle" aria-hidden="true" style="color: #e37674"></i></span> Negative Feedback: <p>{{negFeed}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/if}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+</div>

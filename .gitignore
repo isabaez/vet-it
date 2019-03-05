@@ -1,0 +1,10 @@
+node_modules
+models/connect.js
+process.env
+uploads
+
+.DS_Store
+
+views/.DS_Store
+
+routes/.DS_Store

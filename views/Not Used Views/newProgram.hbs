@@ -1,0 +1,53 @@
+{{#if error}}
+    <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+      {{error}}
+    </div>
+{{/if}}
+
+<h1>New Program Posting</h1>
+<form class="form-horizontal" role="form" method="POST">
+<h2>{{company.name}}</h2>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="programType">Type of Program</label>
+    <div class="col-sm-10">
+      <select name="programType" class="target input_Program_wrap" id="programType">
+        <option value=''>----Please Select the Type of Program----</option>
+        {{#each typesOfPrograms}}
+          <option value='{{this}}'>{{this}}</option>
+        {{/each}}
+        <option class="other" value="Other">New Program Type - Please Specify Below</option>
+      </select>
+    </div>
+    <div id="newProgram" class="col-sm-10 newProgram">
+      <input type="text" class="form-control" id="newProgramVal" name="newProgram" placeholder="New Program">
+      <button class="add_Program_button">+Add Program Type</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="programTitle">Program Title</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="programTitle" name="programTitle" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-10 form-inline">
+      <label class="control-label col-sm-2" for="deadlineMonth">Next Deadline</label>
+      <select class="form-control" id="deadlineMonth" name="deadlineMonth">
+        <option value=''>----Please Select a Month----</option>
+      </select>
+      <select class="form-control" id="deadlineDay" name="deadlineDay">
+        <option value=''>----Please Select a Day----</option>
+      </select>
+      <select class="form-control" id="deadlineYear" name="deadlineYear">
+        <option value=''>----Please Select a Year----</option>
+      </select>
+    </div>
+  </div>
+  <a class="btn btn-default" href="/companyProfile/{{company._id}}">Cancel</a>
+  <button type="submit" id="postProgram" class="btn btn-default">Post Program</button>
+</form>
+
+<script src="/newProgram.js">
+</script>

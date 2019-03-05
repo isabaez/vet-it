@@ -1,0 +1,51 @@
+{{#if error}}
+    <div class="alert alert-danger" role="alert">
+        <i class="fa fa-exclamation" aria-hidden="true"></i>
+        <span class="sr-only">Error:</span>
+      {{error}}
+    </div>
+{{/if}}
+
+<div class="paper">
+  <div class="col-md-8 col-md-offset-2 col-xs-12">
+          <form role="form" method="POST">
+            <h1 class="title">Baseline Information</h1>
+            <h5>Help us streamline your dashboard with some baseline information.</h5>
+            <br>
+          <div class="form-group col-xs-8 col-xs-offset-2">
+            <select class="form-control" name='status' id="status" required>
+              <option value=''>----Please Select a Status----</option>
+            </select>
+            <label>Current Military Status</label>
+          </div>
+          <div class="form-group col-xs-8 col-xs-offset-2">
+            <fieldset class="form-group">
+              <div class="form-inline">
+                <select class="form-control" id="ETSMonth" name="ETSMonth" required>
+                  <option value=''>----Select a Month----</option>
+                </select>
+                <select class="form-control" id="ETSDay" name="ETSDay" required>
+                  <option value=''>----Select a Day----</option>
+                </select>
+                <select class="form-control" id="ETSYear" name="ETSYear" required>
+                  <option value=''>----Select a Year----</option>
+                </select>
+              </div>
+              <label>ETS Date</label>
+            </fieldset>
+          </div>
+          <div class="form-group col-xs-8 col-xs-offset-2">
+            <select class="form-control" id="branch" name="branch" required>
+              <option value=''>----Please Select a Branch----</option>
+            </select>
+            <label>Service Branch</label>
+          </div>
+          <div class="form-group col-xs-8 col-xs-offset-2">
+            <input type="text" class="form-control" id="MOS" name="MOS" placeholder="Type here..." required>
+            <label>Military Occupational Specialty</label>
+          </div>
+          <button class="btn btn-primary" type="submit">Continue</button>
+        <br>
+      </form>
+  </div>
+</div>

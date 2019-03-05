@@ -1,0 +1,482 @@
+{{#if error}}
+    <div class="alert alert-danger" role="alert">
+      <i class="fa fa-exclamation" aria-hidden="true"></i>
+        <span class="sr-only">Error:</span>
+      {{error}}
+    </div>
+{{/if}}
+
+<!-- multistep form -->
+<h1>My Work Experience</h1>
+<h2>{{company.name}}</h2>
+<form id="msform" name="companyreview" role="form" method="POST">
+  <!-- progressbar -->
+  <ul id="progressbar">
+    <li class="active">Type of Program</li>
+    <li>Star Ratings</li>
+    <li>Salary Reviews</li>
+    <li>Recommendations</li>
+    <li>Feedback</li>
+  </ul>
+  <!-- fieldsets -->
+  <!-- step 1 -->
+  <fieldset class="step1">
+    <h2 class="fs-title">Type of Program</h2>
+    <h3 class="fs-subtitle">Please fill out every form before submitting.</h3>
+		<div class="form-group col-xs-10 col-xs-offset-1">
+        <input type="text" class="form-control" id="positionTitle" name="positionTitle" placeholder="Position Title" autofocus>
+        <label class="control-label" for="positionTitle">Position Title</label>
+    </div>
+
+    <div class="form-group col-xs-10 col-xs-offset-1">
+      <div class="form-control" style="display: inline-flex;">
+      <div class="toggle-button toggle-button--niitty" style="margin: 0">
+        <input id="FullTime" name="type" value="Full Time" type="radio">
+        <label for="FullTime" style="width: 100px">Full Time</label>
+        <div class="toggle-button__icon" style="border-color: #eceef4"></div>
+      </div>
+      <div class="toggle-button toggle-button--niitty" style="margin: 0">
+        <input id="PartTime" name="type" value="Part Time" type="radio">
+        <label for="PartTime" style="width: 100px">Part Time</label>
+        <div class="toggle-button__icon" style="border-color: #eceef4"></div>
+      </div>
+      </div>
+      <label>Type</label>
+    </div>
+
+  	<div class="form-group col-xs-10 col-xs-offset-1">
+    <select class="form-control" name="afterDuty" id="afterDuty">
+      <option value=''>----Please Select a Status----</option>
+    </select>
+    <label>How many jobs have you held after active duty?</label>
+    </div>
+
+  	<div class="form-group col-xs-10 col-xs-offset-1">
+      <select class="form-control" name="howLong" id="howLong">
+        <option value=''>----Please Select Below----</option>
+      </select>
+      <label for="howLong">How long have you worked here?</label>
+    </div>
+    <div name="next" class="next btn btn-info">Next</div>
+  </fieldset>
+  <!-- step 2 -->
+  <fieldset class="step2">
+    <h2 class="fs-title">Star Ratings</h2>
+    <h3 class="fs-subtitle">1 is lowest 5 is highest</h3>
+    <div class="form-group">
+      <div class="col-xs-12">
+        <div class="starz" id="OE">
+          <input class="star star-5" id="star-5" value="5" type="radio" name="OE"/>
+          <label class="star star-5" for="star-5"></label>
+          <input class="star star-4" id="star-4" value="4" type="radio" name="OE"/>
+          <label class="star star-4" for="star-4"></label>
+          <input class="star star-3" id="star-3" value="3" type="radio" name="OE"/>
+          <label class="star star-3" for="star-3"></label>
+          <input class="star star-2" id="star-2" value="2" type="radio" name="OE"/>
+          <label class="star star-2" for="star-2"></label>
+          <input class="star star-1" id="star-1" value="1" type="radio" name="OE"/>
+          <label class="star star-1" for="star-1"></label>
+        </div>
+      </div>
+      <label for="OE">Overall Experience</label>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-12">
+        <div class="starz" id="CM">
+          <input class="star star-5" id="star-10" value="5" type="radio" name="CM" />
+          <label class="star star-5" for="star-10"></label>
+          <input class="star star-4" id="star-9" value="4" type="radio" name="CM" />
+          <label class="star star-4" for="star-9"></label>
+          <input class="star star-3" id="star-8" value="3" type="radio" name="CM" />
+          <label class="star star-3" for="star-8"></label>
+          <input class="star star-2" id="star-7" value="2" type="radio" name="CM" />
+          <label class="star star-2" for="star-7"></label>
+          <input class="star star-1" id="star-6" value="1" type="radio" name="CM" />
+          <label class="star star-1" for="star-6"></label>
+        </div>
+      </div>
+      <label for="CM">Company Mission</label>
+    </div>
+    <br>
+    <div class="form-group">
+      <div class="col-xs-12">
+        <div class="starz" id="CC">
+          <input class="star star-5" id="star-15" value="5" type="radio" name="CC" />
+          <label class="star star-5" for="star-15"></label>
+          <input class="star star-4" id="star-14" value="4" type="radio" name="CC" />
+          <label class="star star-4" for="star-14"></label>
+          <input class="star star-3" id="star-13" value="3" type="radio" name="CC" />
+          <label class="star star-3" for="star-13"></label>
+          <input class="star star-2" id="star-12" value="2" type="radio" name="CC" />
+          <label class="star star-2" for="star-12"></label>
+          <input class="star star-1" id="star-11" value="1" type="radio" name="CC" />
+          <label class="star star-1" for="star-11"></label>
+        </div>
+      </div>
+      <label for="CC">Company Culture</label>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-12">
+        <div class="starz" id="OP">
+          <input class="star star-5" id="star-20" value="5" type="radio" name="OP" />
+          <label class="star star-5" for="star-20"></label>
+          <input class="star star-4" id="star-19" value="4" type="radio" name="OP" />
+          <label class="star star-4" for="star-19"></label>
+          <input class="star star-3" id="star-18" value="3" type="radio" name="OP" />
+          <label class="star star-3" for="star-18"></label>
+          <input class="star star-2" id="star-17" value="2" type="radio" name="OP" />
+          <label class="star star-2" for="star-17"></label>
+          <input class="star star-1" id="star-16" value="1" type="radio" name="OP" />
+          <label class="star star-1" for="star-16"></label>
+        </div>
+      </div>
+      <label for="OP">Onboarding Program</label>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-12">
+        <div class="starz" id="PDP">
+          <input class="star star-5" id="star-25" value="5" type="radio" name="PDP" />
+          <label class="star star-5" for="star-25"></label>
+          <input class="star star-4" id="star-24" value="4" type="radio" name="PDP" />
+          <label class="star star-4" for="star-24"></label>
+          <input class="star star-3" id="star-23" value="3" type="radio" name="PDP" />
+          <label class="star star-3" for="star-23"></label>
+          <input class="star star-2" id="star-22" value="2" type="radio" name="PDP" />
+          <label class="star star-2" for="star-22"></label>
+          <input class="star star-1" id="star-21" value="1" type="radio" name="PDP" />
+          <label class="star star-1" for="star-21"></label>
+        </div>
+      </div>
+      <label for="PDP">Professional Development Program</label>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-12">
+        <div class="starz" id="CEO"  >
+          <input class="star star-5" id="star-30" value="5" type="radio" name="CEO" />
+          <label class="star star-5" for="star-30"></label>
+          <input class="star star-4" id="star-29" value="4" type="radio" name="CEO" />
+          <label class="star star-4" for="star-29"></label>
+          <input class="star star-3" id="star-28" value="3" type="radio" name="CEO" />
+          <label class="star star-3" for="star-28"></label>
+          <input class="star star-2" id="star-27" value="2" type="radio" name="CEO" />
+          <label class="star star-2" for="star-27"></label>
+          <input class="star star-1" id="star-26" value="1" type="radio" name="CEO" />
+          <label class="star star-1" for="star-26"></label>
+        </div>
+      </div>
+      <label for="CEO">CEO/Leadership Understand Veterans' Value</label>
+    </div>
+    <div name="previous" class="previous btn btn-default" value="Previous">Previous</div>
+    <div name="next" class="next btn btn-info">Next</div>
+  </fieldset>
+  <fieldset class="step3" id="salary">
+    <h2 class="fs-title">Salary Reviews</h2>
+    <h3 class="fs-subtitle"></h3>
+    <div class="form-group">
+      <label class="control-label col-sm-2 labelright" for="salaryAmount">Salary (in dollars)</label>
+      <div class="input-group col-sm-8">
+        <input type="number" class="form-control" id="salaryAmount" name="salary" placeholder="Amount">
+          <div class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i>
+          </div>
+      </div>
+    </div>
+    <br>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2 labelright" for="bonuses">Bonuses (in dollars)</label>
+      <div class="input-group col-sm-8">
+        <input type="number" class="form-control" id="bonuses" name="bonuses" placeholder="Amount">
+          <div class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i>
+          </div>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <label class="control-label col-sm-2 labelright" for="tips">Tips (in dollars)</label>
+      <div class="input-group col-sm-8">
+        <input type="number" class="form-control" id="tips" name="tips" placeholder="Amount">
+          <div class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i>
+          </div>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <label class="control-label col-sm-2 labelright" for="salesComm">Sales Commission (in dollars)</label>
+      <div class="input-group col-sm-8">
+        <input type="number" class="form-control" id="salesComm" name="salesComm" placeholder="Amount">
+          <div class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i>
+          </div>
+      </div>
+    </div>
+    <div name="previous" class="previous btn btn-default" value="Previous">Previous</div>
+    <div name="next" class="next btn btn-info">Next</div>
+  </fieldset>
+  <fieldset class="step4">
+    <h2 class="fs-title">Recommendations</h2>
+
+    <div class="form-group col-xs-10 col-xs-offset-1">
+      <select  class="form-control" name="whyLeft" id="whyLeft">
+        <option value=''>----Please Select Your Reason Below----</option>
+      </select>
+    <label for="whyLeft">Why did you leave?</label>
+    </div>
+
+    <div class="form-group col-xs-10 col-xs-offset-1">
+      <select  class="form-control" name="militaryBack" id="militaryBack">
+        <option value=''>----Please Select Below----</option>
+      </select>
+    <label for="whyLeft">Would you recommend this position to a vet with my military background?</label>
+    </div>
+
+    <div class="form-group col-xs-10 col-xs-offset-1">
+      <select  class="form-control" name="eduBack" id="eduBack">
+        <option value=''>----Please Select Below----</option>
+      </select>
+    <label for="whyLeft">Would you recommend this position to a vet with my civilian education background?</label>
+    </div>
+
+    <div name="previous" class="previous btn btn-default" value="Previous">Previous</div>
+    <div name="next" class="next btn btn-info">Next</div>
+  </fieldset>
+  <fieldset class="step5">
+    <h2 class="fs-title">Feedback</h2>
+    <h3 class="fs-subtitle">This will be visible to everyone.</h3>
+    <div class="form-group">
+      <label class="control-label col-sm-2 labelright" for="posFeed">Positive FeedBack</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" name="posFeed" id="posFeed" rows="4" cols="50"  ></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2 labelright" for="negFeed"  >Negative FeedBack</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" name="negFeed" id="negFeed" rows="4" cols="50"></textarea>
+      </div>
+    </div>
+    <div name="previous" class="previous btn btn-default" value="Previous">Previous</div>
+    <button type="submit" class="submit btn btn-primary">Submit Review</button>
+  </fieldset>
+</form>
+
+<script>
+//jQuery time
+var current_fs, next_fs, previous_fs; //fieldsets
+var left, opacity, scale; //fieldset properties which we will animate
+var animating; //flag to prevent quick multi-click glitches
+
+$(".next").click(function(){
+  if($(this).parent().hasClass('step1')){
+    if($("#positionTitle").val() && ($("#FullTime").is(':checked')||$("#PartTime").is(':checked')) && $("#afterDuty").val() && $("#howLong").val()){
+      if(animating) return false;
+      animating = true;
+
+      current_fs = $(this).parent();
+      next_fs = $(this).parent().next();
+
+      //activate next step on progressbar using the index of next_fs
+      $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+      //show the next fieldset
+      next_fs.show();
+      //hide the current fieldset with style
+      current_fs.animate({opacity: 0}, {
+        step: function(now, mx) {
+          //as the opacity of current_fs reduces to 0 - stored in "now"
+          //1. scale current_fs down to 80%
+          scale = 1 - (1 - now) * 0.2;
+          //2. bring next_fs from the right(50%)
+          left = (now * 50)+"%";
+          //3. increase opacity of next_fs to 1 as it moves in
+          opacity = 1 - now;
+          current_fs.css({
+            'transform': 'scale('+scale+')',
+            'position': 'absolute'
+          });
+          next_fs.css({'left': left, 'opacity': opacity});
+        },
+        duration: 800,
+        complete: function(){
+          current_fs.hide();
+          animating = false;
+        },
+        //this comes from the custom easing plugin
+        easing: 'easeInOutBack'
+      });
+    }
+    else{
+      alert('Please Fill Out All of the Fields');
+    }
+  } else if($(this).parent().hasClass('step2')){
+    if(($("#star-1").is(':checked')||$("#star-2").is(':checked')||$("#star-3").is(':checked')||$("#star-4").is(':checked')||$("#star-5").is(':checked'))&&($("#star-6").is(':checked')||$("#star-7").is(':checked')||$("#star-8").is(':checked')||$("#star-9").is(':checked')||$("#star-10").is(':checked'))&&($("#star-11").is(':checked')||$("#star-12").is(':checked')||$("#star-13").is(':checked')||$("#star-14").is(':checked')||$("#star-15").is(':checked'))&&($("#star-16").is(':checked')||$("#star-17").is(':checked')||$("#star-18").is(':checked')||$("#star-19").is(':checked')||$("#star-20").is(':checked'))&&($("#star-21").is(':checked')||$("#star-22").is(':checked')||$("#star-23").is(':checked')||$("#star-24").is(':checked')||$("#star-25").is(':checked'))&&($("#star-26").is(':checked')||$("#star-27").is(':checked')||$("#star-28").is(':checked')||$("#star-29").is(':checked')||$("#star-30").is(':checked'))){
+      if(animating) return false;
+      animating = true;
+
+      current_fs = $(this).parent();
+      next_fs = $(this).parent().next();
+
+      //activate next step on progressbar using the index of next_fs
+      $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+      //show the next fieldset
+      next_fs.show();
+      //hide the current fieldset with style
+      current_fs.animate({opacity: 0}, {
+        step: function(now, mx) {
+          //as the opacity of current_fs reduces to 0 - stored in "now"
+          //1. scale current_fs down to 80%
+          scale = 1 - (1 - now) * 0.2;
+          //2. bring next_fs from the right(50%)
+          left = (now * 50)+"%";
+          //3. increase opacity of next_fs to 1 as it moves in
+          opacity = 1 - now;
+          current_fs.css({
+            'transform': 'scale('+scale+')',
+            'position': 'absolute'
+          });
+          next_fs.css({'left': left, 'opacity': opacity});
+        },
+        duration: 800,
+        complete: function(){
+          current_fs.hide();
+          animating = false;
+        },
+        //this comes from the custom easing plugin
+        easing: 'easeInOutBack'
+      });
+    }
+    else{
+      alert('Please Fill Out All of the Fields');
+    }
+  } else if($(this).parent().hasClass('step3')){
+    if($('#salaryAmount').val()&&$('#bonuses').val()&&$('#tips').val()&&$('#salesComm').val()){
+      if(animating) return false;
+      animating = true;
+
+      current_fs = $(this).parent();
+      next_fs = $(this).parent().next();
+
+      //activate next step on progressbar using the index of next_fs
+      $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+      //show the next fieldset
+      next_fs.show();
+      //hide the current fieldset with style
+      current_fs.animate({opacity: 0}, {
+        step: function(now, mx) {
+          //as the opacity of current_fs reduces to 0 - stored in "now"
+          //1. scale current_fs down to 80%
+          scale = 1 - (1 - now) * 0.2;
+          //2. bring next_fs from the right(50%)
+          left = (now * 50)+"%";
+          //3. increase opacity of next_fs to 1 as it moves in
+          opacity = 1 - now;
+          current_fs.css({
+            'transform': 'scale('+scale+')',
+            'position': 'absolute'
+          });
+          next_fs.css({'left': left, 'opacity': opacity});
+        },
+        duration: 800,
+        complete: function(){
+          current_fs.hide();
+          animating = false;
+        },
+        //this comes from the custom easing plugin
+        easing: 'easeInOutBack'
+      });
+    }
+    else{
+      alert('Please Fill Out All of the Fields');
+    }
+  } else if($(this).parent().hasClass('step4')){
+    if($('#whyLeft').val()&&$('#militaryBack').val()&&$('#eduBack').val()){
+      if(animating) return false;
+      animating = true;
+
+      current_fs = $(this).parent();
+      next_fs = $(this).parent().next();
+
+      //activate next step on progressbar using the index of next_fs
+      $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+      //show the next fieldset
+      next_fs.show();
+      //hide the current fieldset with style
+      current_fs.animate({opacity: 0}, {
+        step: function(now, mx) {
+          //as the opacity of current_fs reduces to 0 - stored in "now"
+          //1. scale current_fs down to 80%
+          scale = 1 - (1 - now) * 0.2;
+          //2. bring next_fs from the right(50%)
+          left = (now * 50)+"%";
+          //3. increase opacity of next_fs to 1 as it moves in
+          opacity = 1 - now;
+          current_fs.css({
+            'transform': 'scale('+scale+')',
+            'position': 'absolute'
+          });
+          next_fs.css({'left': left, 'opacity': opacity});
+        },
+        duration: 800,
+        complete: function(){
+          current_fs.hide();
+          animating = false;
+        },
+        //this comes from the custom easing plugin
+        easing: 'easeInOutBack'
+      });
+    }
+    else{
+      alert('Please Fill Out All of the Fields');
+    }
+  }
+
+});
+
+$(".previous").click(function(){
+  if(animating) return false;
+  animating = true;
+
+  current_fs = $(this).parent();
+  previous_fs = $(this).parent().prev();
+
+  //de-activate current step on progressbar
+  $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+  //show the previous fieldset
+  previous_fs.show();
+  //hide the current fieldset with style
+  current_fs.animate({opacity: 0}, {
+    step: function(now, mx) {
+      //as the opacity of current_fs reduces to 0 - stored in "now"
+      //1. scale previous_fs from 80% to 100%
+      scale = 0.8 + (1 - now) * 0.2;
+      //2. take current_fs to the right(50%) - from 0%
+      left = ((1-now) * 50)+"%";
+      //3. increase opacity of previous_fs to 1 as it moves in
+      opacity = 1 - now;
+      current_fs.css({'left': left});
+      previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+    },
+    duration: 800,
+    complete: function(){
+      current_fs.hide();
+      animating = false;
+    },
+    //this comes from the custom easing plugin
+    easing: 'easeInOutBack'
+  });
+});
+
+$(".submit").click(function(e){
+  if($(this).parent().hasClass('step5')){
+    if($('#posFeed').val()&&$('#negFeed').val()){
+      return;
+    }
+    else{
+      e.preventDefault();
+      alert('Please Fill Out All of the Fields');
+    }
+  }
+})
+</script>

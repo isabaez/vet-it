@@ -1,0 +1,89 @@
+{{#if error}}
+    <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+      {{error}}
+    </div>
+{{/if}}
+<form class="container" method="POST"> 
+  <div class="form-group">
+    <label>First Name</label>
+    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="John" autofocus required>
+  </div>
+  <div class="form-group">
+    <label>Last Name</label>
+    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Doe" required>
+  </div>
+  <div class="form-group">
+    <label>Location</label>
+    <input type="text" class="form-control" id="location" name="location" placeholder="Example, EX" required>
+  </div>
+  <fieldset class="form-group">
+    <label>Current Military Status</label>
+    <select class="form-control" name='status' id="status">
+    <option value=''>----Please Select a Status----</option>
+    </select>
+  </fieldset>
+  <label>ETS Date</label>
+  <fieldset class="form-group">
+    <div class="form-inline">
+      <select class="form-control" id="ETSMonth" name="ETSMonth">
+        <option value=''>----Please Select a Month----</option>
+      </select>
+      <select class="form-control" id="ETSDay" name="ETSDay">
+        <option value=''>----Please Select a Day----</option>
+      </select>
+      <select class="form-control" id="ETSYear" name="ETSYear">
+        <option value=''>----Please Select a Year----</option>
+      </select>
+    </div>
+  </fieldset>
+  <label>Service Branch</label>
+  <fieldset class="form-group">
+    <select class="form-control" id="branch" name="branch">
+      <option value=''>----Please Select a Branch----</option>
+    </select>
+  </fieldset>
+  <label>Highest Pay Grade</label>
+  <fieldset class="form-group">
+    <select class="form-control" id="payGrade" name="payGrade">
+      <option value=''>----Please Select a Pay Grade----</option>
+    </select>
+  </fieldset>
+  <label>Military Occupational Specialty</label>
+  <fieldset class="form-group">
+    <input type="text" class="form-control" id="MOS" name="MOS" required>
+  </fieldset>
+  <label>Gender</label>
+  <fieldset class="form-group">
+    <label class="radio-inline">
+      <input type="radio" name="gender" id="genderMale" value="Male" required> Male
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="gender" id="genderFemale" value="Female" required> Female
+    </label>
+  </fieldset>
+  <label>Race/Ethnicity</label>
+  <fieldset class="form-group">
+    <select class="form-control" id="race" name="race">
+      <option value=''>----Please Select an Ethnicity----</option>
+    </select>
+  </fieldset>
+  <label>Work Opportunity Tax Credit Eligible?</label>
+  <fieldset class="form-group">
+    <label class="radio-inline">
+      <input type="radio" name="TCE" id="TCEYes" value="Yes" required>Yes
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="TCE" id="TCENo" value="No" required>No
+    </label>
+  </fieldset>
+<!--   <div class="checkbox">
+    <label><input type="checkbox" name="terms" value="true">I accept the terms and conditions*</label>
+  </div> -->
+  <a class="btn btn-default" href="/editProfile">Cancel</a>
+  <button class="btn btn-default" type="submit">Complete Changes</button>
+</form>
+
+<script src="/demographics.js">
+</script>

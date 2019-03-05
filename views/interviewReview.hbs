@@ -1,0 +1,288 @@
+{{#if error}}
+    <div class="alert alert-danger" role="alert">
+      <i class="fa fa-exclamation" aria-hidden="true"></i>
+        <span class="sr-only">Error:</span>
+      {{error}}
+    </div>
+{{/if}}
+{{#if employer}}
+<h1>My Job Interview</h1>
+<h2>{{company.name}}</h2>
+{{else}}
+<h1>My Education Program Interview</h1>
+<h2>{{company.name}}</h2>
+{{/if}}
+
+<form id="msform" name="companyreview" role="form" method="POST" novalidate>
+  <!-- progressbar -->
+  <ul id="progressbar">
+    <li class="active" style="width: 33.33%">Type of Program</li>
+    <li style="width: 33.33%">Questions</li>
+    <li style="width: 33.33%">Feedback</li>
+  </ul>
+  <!-- fieldsets -->
+  <!-- step 1 -->
+  <fieldset class="step1">
+    <h2 class="fs-title">Type of Program</h2>
+    <h3 class="fs-subtitle">Please fill out every form before submitting.</h3>
+		<div class="form-group col-xs-10 col-xs-offset-1">
+        <input type="text" class="form-control" id="positionTitle" name="positionTitle" placeholder="Position Title" autofocus required>
+        <label class="control-label" for="positionTitle">Position Title</label>
+    </div>
+
+  	<div class="form-group col-xs-10 col-xs-offset-1">
+      <select class="form-control" id="year" name="year">
+        <option value=''>----Please Select the Year you were Interviewed----</option>
+      </select>
+    <label>Year Interviewed</label>
+    </div>
+
+  	<div class="form-group col-xs-10 col-xs-offset-1">
+      <select class="form-control" name="secureJob" class="target input_Option_wrap" id="secureJob">
+        <option value=''>----Please Select How You Secured the Interview----</option>
+        <option class="otherSecured" value="Other">Other - Please Specify Below</option>
+      </select>
+      <label for="howLong">How did you secure this interview?</label>
+      <div id="newOption" class="col-sm-10 newOption">
+        <input type="text" class="form-control" id="newOptionVal" name="newOption" placeholder="Other Option">
+        <button class="add_Option_button btn btn-info">+Add Option</button>
+      </div>
+    </div>
+
+    <div class="form-group col-xs-10 col-xs-offset-1">
+      <select class="form-control" name="proDura" id="proDura">
+        <option value=''>----Please Select Below----</option>
+      </select>
+      <label>Process Duration</label>
+    </div>
+
+    <div class="form-group col-xs-10 col-xs-offset-1">
+      <textarea class="form-control" name="proDesc" id="proDesc" rows="4" cols="50" placeholder="Process Description"required></textarea>
+      <label>Process Description</label>
+    </div>
+
+    <div name="next" class="next btn btn-info">Next</div>
+  </fieldset>
+  <!-- step 2 -->
+  <fieldset class="step2">
+    <h2 class="fs-title">Star Ratings and Questions</h2>
+    <h3 class="fs-subtitle">1 is lowest 5 is highest</h3>
+    <div class="form-group">
+      <div class="col-xs-12">
+        <div class="starz" id="OE">
+          <input class="star star-5" value='5' id="star-5" type="radio" name="OE" required/>
+          <label class="star star-5" for="star-5"></label>
+          <input class="star star-4" value='4' id="star-4" type="radio" name="OE" required/>
+          <label class="star star-4" for="star-4"></label>
+          <input class="star star-3" value='3' id="star-3" type="radio" name="OE" required/>
+          <label class="star star-3" for="star-3"></label>
+          <input class="star star-2" value='2' id="star-2" type="radio" name="OE" required/>
+          <label class="star star-2" for="star-2"></label>
+          <input class="star star-1" value='1' id="star-1" type="radio" name="OE" required/>
+          <label class="star star-1" for="star-1"></label>
+        </div>
+      </div>
+      <label for="OE">Overall Experience</label>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-12">
+        <div class="starz" id="intDiff">
+          <input class="star star-5" value='5' id="star-10" type="radio" name="intDiff" required />
+          <label class="star star-5" for="star-10"></label>
+          <input class="star star-4" value='4' id="star-9" type="radio" name="intDiff" required/>
+          <label class="star star-4" for="star-9"></label>
+          <input class="star star-3" value='3' id="star-8" type="radio" name="intDiff" required/>
+          <label class="star star-3" for="star-8"></label>
+          <input class="star star-2" value='2' id="star-7" type="radio" name="intDiff" required/>
+          <label class="star star-2" for="star-7"></label>
+          <input class="star star-1" value='1' id="star-6" type="radio" name="intDiff" required/>
+          <label class="star star-1" for="star-6"></label>
+        </div>
+      </div>
+      <label>Interview Difficulty</label>
+    </div>
+
+    <div id="QA" class="input_QA_wrap form-group col-xs-10 col-xs-offset-1">
+      <div>
+      <textarea class="form-control" name="question" id="question1" rows="2" cols="50" placeholder="Question" required></textarea>
+      <label>Question 1</label>
+    </div>
+    <div>
+      <textarea class="form-control" name="answer" id="answer1" rows="4" cols="50" placeholder="Answer" required></textarea>
+      <label>Answer 1</label>
+    </div>
+    </div>
+          <button class="add_QA_button btn btn-info">+Add More Q/A</button>
+          <br>
+    <div name="previous" class="previous btn btn-default" value="Previous">Previous</div>
+    <div name="next" class="next btn btn-info">Next</div>
+  </fieldset>
+  <fieldset class="step3">
+    <h2 class="fs-title">Feedback</h2>
+    <h3 class="fs-subtitle">This will be visible to everyone.</h3>
+    <div class="form-group">
+      <label class="control-label col-sm-2 labelright" for="posFeed">Positive FeedBack</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" name="posFeed" id="posFeed" rows="4" cols="50"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2 labelright" for="negFeed">Negative FeedBack</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" name="negFeed" id="negFeed" rows="4" cols="50"></textarea>
+      </div>
+    </div>
+    {{#if employer}}
+      <div>
+        <label><input type="checkbox" id="gotIt" name="gotIt" value="true">I was offered the job.</label>
+      </div>
+    {{else}}
+      <div>
+        <label><input type="checkbox" id="gotIt" name="gotIt" value="true">I was offered admission.</label>
+      </div>
+    {{/if}}
+      <a class="btn btn-default" href="/companyProfile/{{company._id}}">Cancel</a>
+    <div name="previous" class="previous btn btn-default" value="Previous">Previous</div>
+    <button type="submit" class="submit btn btn-primary">Submit Review</button>
+  </fieldset>
+</form>
+
+<script>
+  //jQuery time
+var current_fs, next_fs, previous_fs; //fieldsets
+var left, opacity, scale; //fieldset properties which we will animate
+var animating; //flag to prevent quick multi-click glitches
+
+$(".next").click(function(){
+  if($(this).parent().hasClass('step1')){
+    if($("#positionTitle").val() && $("#year").val() && $("#secureJob").val() && $("#proDura").val() && $("#proDesc").val()){
+      if(animating) return false;
+      animating = true;
+
+      current_fs = $(this).parent();
+      next_fs = $(this).parent().next();
+
+      //activate next step on progressbar using the index of next_fs
+      $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+      //show the next fieldset
+      next_fs.show();
+      //hide the current fieldset with style
+      current_fs.animate({opacity: 0}, {
+        step: function(now, mx) {
+          //as the opacity of current_fs reduces to 0 - stored in "now"
+          //1. scale current_fs down to 80%
+          scale = 1 - (1 - now) * 0.2;
+          //2. bring next_fs from the right(50%)
+          left = (now * 50)+"%";
+          //3. increase opacity of next_fs to 1 as it moves in
+          opacity = 1 - now;
+          current_fs.css({
+            'transform': 'scale('+scale+')',
+            'position': 'absolute'
+          });
+          next_fs.css({'left': left, 'opacity': opacity});
+        },
+        duration: 800,
+        complete: function(){
+          current_fs.hide();
+          animating = false;
+        },
+        //this comes from the custom easing plugin
+        easing: 'easeInOutBack'
+      });
+    }
+    else{
+      alert('Please Fill Out All of the Fields');
+    }
+  } else if($(this).parent().hasClass('step2')){
+    if(($("#star-1").is(':checked')||$("#star-2").is(':checked')||$("#star-3").is(':checked')||$("#star-4").is(':checked')||$("#star-5").is(':checked'))&&($("#star-6").is(':checked')||$("#star-7").is(':checked')||$("#star-8").is(':checked')||$("#star-9").is(':checked')||$("#star-10").is(':checked'))&&$("#question1").val()&&$("#answer1").val()){
+      if(animating) return false;
+      animating = true;
+
+      current_fs = $(this).parent();
+      next_fs = $(this).parent().next();
+
+      //activate next step on progressbar using the index of next_fs
+      $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+      //show the next fieldset
+      next_fs.show();
+      //hide the current fieldset with style
+      current_fs.animate({opacity: 0}, {
+        step: function(now, mx) {
+          //as the opacity of current_fs reduces to 0 - stored in "now"
+          //1. scale current_fs down to 80%
+          scale = 1 - (1 - now) * 0.2;
+          //2. bring next_fs from the right(50%)
+          left = (now * 50)+"%";
+          //3. increase opacity of next_fs to 1 as it moves in
+          opacity = 1 - now;
+          current_fs.css({
+            'transform': 'scale('+scale+')',
+            'position': 'absolute'
+          });
+          next_fs.css({'left': left, 'opacity': opacity});
+        },
+        duration: 800,
+        complete: function(){
+          current_fs.hide();
+          animating = false;
+        },
+        //this comes from the custom easing plugin
+        easing: 'easeInOutBack'
+      });
+    }
+    else{
+      alert('Please Fill Out All of the Fields');
+    }
+  }
+});
+
+$(".previous").click(function(){
+  if(animating) return false;
+  animating = true;
+
+  current_fs = $(this).parent();
+  previous_fs = $(this).parent().prev();
+
+  //de-activate current step on progressbar
+  $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+  //show the previous fieldset
+  previous_fs.show();
+  //hide the current fieldset with style
+  current_fs.animate({opacity: 0}, {
+    step: function(now, mx) {
+      //as the opacity of current_fs reduces to 0 - stored in "now"
+      //1. scale previous_fs from 80% to 100%
+      scale = 0.8 + (1 - now) * 0.2;
+      //2. take current_fs to the right(50%) - from 0%
+      left = ((1-now) * 50)+"%";
+      //3. increase opacity of previous_fs to 1 as it moves in
+      opacity = 1 - now;
+      current_fs.css({'left': left});
+      previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+    },
+    duration: 800,
+    complete: function(){
+      current_fs.hide();
+      animating = false;
+    },
+    //this comes from the custom easing plugin
+    easing: 'easeInOutBack'
+  });
+});
+
+$(".submit").click(function(e){
+  if($(this).parent().hasClass('step3')){
+    if($('#posFeed').val()&&$('#negFeed').val()){
+      return;
+    }
+    else{
+      e.preventDefault();
+      alert('Please Fill Out All of the Fields');
+    }
+  }
+})
+</script>
