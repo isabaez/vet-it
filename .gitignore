@@ -1,6 +1,6 @@
 node_modules
 models/connect.js
-process.env
+.env
 uploads
 
 .DS_Store
