@@ -1,4 +1,0 @@
-add usernames to company type
-veteran name style as one and edit as two
-finish sendgrid work
-make add jobopening and add program modals
