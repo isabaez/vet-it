@@ -1,3 +1,4 @@
+require('dotenv').config()
 var mongoose = require('mongoose');
 var Company = require('./models/models').Company;
 var CompanyReview = require('./models/models').CompanyReview;
@@ -5,7 +6,13 @@ var InterviewReview = require('./models/models').InterviewReview;
 var EducationReview = require('./models/models').EducationReview;
 var JobOpening = require('./models/models').JobOpening;
 var Program = require('./models/models').Program;
-mongoose.connect(process.env.theGoose);
+mongoose.connect(process.env.mlab, {useNewUrlParser: true },function(err){
+        if(err) {
+            console.log('Some problem with the connection ' +err);
+        } else {
+            console.log('The Mongoose connection is ready');
+        }
+    })
 
 var companies = require('./companies.json');
 
