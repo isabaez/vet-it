@@ -30,7 +30,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-mongoose.connect(process.env.mlab);
+mongoose.connect(process.env.mlab, {
+  useNewUrlParser: true,
+   useUnifiedTopology: true
+});
 
 app.use(session({
     secret: "secret",
